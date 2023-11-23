@@ -9,11 +9,15 @@ import { environment } from 'src/environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import { LoginComponent } from './components/auth/login/login/login.component';
+import { RegisterComponent } from './components/auth/register/register/register.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -22,5 +26,9 @@ import { AngularFireModule } from '@angular/fire/compat';
   ],
   providers: [],
   bootstrap: [AppComponent]
+  
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
+
