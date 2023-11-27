@@ -1,0 +1,30 @@
+<div class="login-container">
+    <div class="items">
+        <div class="form-section">
+            <div class="img-logo">
+                <img src="assets/logo.png" alt="Logo" class="logo">
+            </div>
+            <form [formGroup] = "loginForm">
+                <div class="email-section">
+                    <input formControlName="email" type="text" name="email" id="email" placeholder="Email">
+                </div>
+                <div class="password-section">
+                    <input formControlName="password" type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="button-section">
+                    <button  (click) = "login()" class="button-login">
+                        Login
+                    </button>
+                </div>
+                <div class="button-section">
+                    <span><a href="">Forgot password?</a></span>
+                    <br>
+                    <span class="t-blue">Don't have an account?<a href="" class="b-green">Sign up</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

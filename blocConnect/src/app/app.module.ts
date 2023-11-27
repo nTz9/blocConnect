@@ -11,7 +11,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { LoginComponent } from './components/auth/login/login/login.component';
 import { RegisterComponent } from './components/auth/register/register/register.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule,ReactiveFormsModule, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,11 @@ import { RegisterComponent } from './components/auth/register/register/register.
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [],
