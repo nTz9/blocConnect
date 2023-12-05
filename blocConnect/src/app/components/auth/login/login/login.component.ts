@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   loginWithEmailAndPassword() {
     let isSessionsActive = localStorage.getItem("token")
     console.error(isSessionsActive);
-    if(isSessionsActive == "0" || isSessionsActive == undefined) {
+    if(isSessionsActive == "0" || isSessionsActive == undefined || !(isSessionsActive=="1")) {
         if(this.loginForm.valid) {
           console.log(this.loginForm.value);
         const userData : any = Object.assign({},this.loginForm.value);
@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
         console.error("Please enter valid details");
       }
     } 
-    else {
-      console.error("Session already active");
-    }    
+    // else {
+    //   console.error("Session already active");
+    // }    
   }
 }
 
