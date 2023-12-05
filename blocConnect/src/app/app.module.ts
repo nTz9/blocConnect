@@ -13,12 +13,16 @@ import { LoginComponent } from './components/auth/login/login/login.component';
 import { RegisterComponent } from './components/auth/register/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule, Validators, FormGroup, FormControl } from '@angular/forms';
+import { HomeComponent } from './components/home/home/home.component';
+import { MenuComponent } from './components/menu/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
