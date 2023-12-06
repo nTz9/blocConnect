@@ -1,1 +1,41 @@
-<p>register works!</p>
+<div class="login-container">
+    <div class="items">
+        <div class="form-section">
+            <div class="img-logo">
+                <img src="assets/logo.png" alt="Logo" class="logo">
+            </div>
+            <form [formGroup] = "registerForm">
+                <div class="email-section">
+                    <input formControlName="firstName" type="text" name="firstName" id="firstName" placeholder="First name">
+                </div>
+                <div class="email-section">
+                    <input formControlName="lastName" type="text" name="lastName" id="lastName" placeholder="Last name">
+                </div>
+                <div class="email-section">
+                    <input formControlName="cnp" type="text" name="cnp" id="cnp" placeholder="CNP">
+                </div>
+                <div class="email-section">
+                    <input formControlName="email" type="email" name="email" id="email" placeholder="Email">
+                </div>
+                <div class="email-section">
+                    <input formControlName="phone" type="tel" name="phone" id="phone" placeholder="Phone">
+                </div>
+                <div class="password-section">
+                    <input formControlName="password" type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="password-section">
+                    <input formControlName="confirmPassword" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+                </div>
+                <div class="button-section">
+                    <button (click)="createAccountWithEmailAndPassword()" class="button-login">Register</button>
+                </div>
+                <div class="button-section">
+                    <span class="t-blue">You already have a account?<a href="" class="b-green">Login</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

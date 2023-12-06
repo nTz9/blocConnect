@@ -9,6 +9,16 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
+  firstName: string = "";
+  lastName: string = "";
+  cnp : string = "";
+  email: string = "";
+  phone: string = "";
+  password: string = "";
+  confirmPassword: string = "";
+  isLoggedIn: boolean = false;
+
+
   constructor(
     private authFire: AngularFireAuth,
     private router: Router,
@@ -17,6 +27,10 @@ export class AuthService {
 
   signWithEmailAndPassword(user: {email: string, password: string}) {
     return this.authFire.signInWithEmailAndPassword(user.email, user.password);
+  }
+
+  registerWithEmailAndPassword(email: string, password: string) {
+    return this.authFire.createUserWithEmailAndPassword(email, password);
   }
 
   // isAuthenticated() {
