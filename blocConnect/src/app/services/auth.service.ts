@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +19,13 @@ export class AuthService {
   confirmPassword: string = "";
   isLoggedIn: boolean = false;
 
-
   constructor(
     private authFire: AngularFireAuth,
     private router: Router,
 
     ) { }
 
+  
   signWithEmailAndPassword(user: {email: string, password: string}) {
     return this.authFire.signInWithEmailAndPassword(user.email, user.password);
   }

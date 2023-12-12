@@ -41,13 +41,15 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ["", Validators.required],
     })
   }
-  getApartamentsByCNP() {
-    this.apartamentService.getAvailableApartamentsByCNP(this.registerForm.value.cnp).subscribe((apartaments: any) => {
-      console.log(apartaments);
-      this.apartaments = apartaments;
-    })
-  }
+
+  // getApartamentsByCNP() {
+  //   this.apartamentService.getAvailableApartamentsByCNP(this.registerForm.value.cnp).subscribe((apartaments: any) => {
+  //     console.log(apartaments);
+  //     this.apartaments = apartaments;
+  //   })
+  // }
   createAccountWithEmailAndPassword() {
+    this.registerForm.value.isAdmin = false;
     if(this.registerForm.valid) {
       console.log(this.registerForm.value);
       if(this.registerForm.value.password == this.registerForm.value.confirmPassword) {
@@ -64,6 +66,7 @@ export class RegisterComponent implements OnInit {
               phone: userData.phone,
               password: userData.password,
               confirmPassword: userData.confirmPassword,
+              isAdmin: userData.isAdmin,
             }).then((res:any) => {
               console.log(res);
               localStorage.setItem("token", "true");
