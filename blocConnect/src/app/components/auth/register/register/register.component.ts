@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
           const currentUser = userCredential.user;
           if(currentUser) {
             const userId = currentUser.uid;
-            this.firestore.collection("users").doc(userData.cnp).set({ 
+            this.firestore.collection("users").doc(userId).set({ 
               firstName: userData.firstName,
               lastName: userData.lastName,
               cnp: userData.cnp,
