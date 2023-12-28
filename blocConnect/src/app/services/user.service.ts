@@ -59,6 +59,6 @@ export class UserService {
   }
 
   verifyIsAdmin(uid: any) {
-
+    
   }
 }

@@ -16,6 +16,7 @@ import { FormsModule,ReactiveFormsModule, Validators, FormGroup, FormControl } f
 import { HomeComponent } from './components/home/home/home.component';
 import { MenuComponent } from './components/menu/menu/menu.component';
 import { BodyComponent } from './body/body/body.component';
+import { MaintenanceComponent } from './components/maintenance/maintenance/maintenance.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BodyComponent } from './body/body/body.component';
     RegisterComponent,
     HomeComponent,
     MenuComponent,
-    BodyComponent
+    BodyComponent,
+    MaintenanceComponent
   ],
   imports: [
     BrowserModule,
