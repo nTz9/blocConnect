@@ -11,8 +11,10 @@ import { UserService } from 'src/app/services/user.service';
 export class HomeComponent {
 
   ngOnInit() {
-    
+     this.userService.getLoggedUserId();
+    //console.log(this.userService.cnp);
   }
+
 
   constructor(
     private authService: AuthService,

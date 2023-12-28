@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule, Validators, FormGroup, FormControl } from '@angular/forms';
 import { HomeComponent } from './components/home/home/home.component';
 import { MenuComponent } from './components/menu/menu/menu.component';
+import { BodyComponent } from './body/body/body.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MenuComponent } from './components/menu/menu/menu.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
