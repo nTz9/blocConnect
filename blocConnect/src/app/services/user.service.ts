@@ -13,7 +13,7 @@ export class UserService {
 
 
   cnp : any = "";
-  roleAdmin : any = false;
+  role: any = "";
   email : any = "";
 
 
@@ -40,11 +40,11 @@ export class UserService {
   getUserDetails(uid: any): Observable<string>{
     return new Observable<string>(observer => {
       this.firestore.collection('users').doc(uid).get().subscribe(user => {
-        const userData = user.data() as { cnp: string, isAdmin: boolean, email: string };
+        const userData = user.data() as { cnp: string, role: string, email: string };
         console.log(userData);
         if (user.exists) {
           this.cnp = userData?.cnp;
-          this.roleAdmin = userData?.isAdmin;
+          this.role = userData?.role;
           this.email = userData?.email;
           observer.next(this.cnp); // Emite valoarea CNP
           observer.complete();

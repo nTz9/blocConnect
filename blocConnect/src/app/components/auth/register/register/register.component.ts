@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
   // }
   createAccountWithEmailAndPassword() {
     this.registerForm.value.role = 'resident';
+    this.registerForm.value.apartaments = this.apartaments;
     if(this.registerForm.valid) {
       console.log(this.registerForm.value);
       if(this.registerForm.value.password == this.registerForm.value.confirmPassword) {
@@ -67,6 +68,7 @@ export class RegisterComponent implements OnInit {
               password: userData.password,
               confirmPassword: userData.confirmPassword,
               role: userData.role,
+              apartaments: userData.apartaments,
             }).then((res:any) => {
               console.log(res);
               localStorage.setItem("token", "true");

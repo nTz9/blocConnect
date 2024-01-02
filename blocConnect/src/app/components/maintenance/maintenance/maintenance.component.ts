@@ -16,6 +16,10 @@ export class MaintenanceComponent {
   userCNP : any = "";
   apss : any = [];
   
+  selectedApartament: string = "";
+  apartaments: any = [];
+
+
   getApps() {
     this.userService.getLoggedUserId().subscribe(cnp => {
       this.userCNP = cnp;
@@ -26,10 +30,18 @@ export class MaintenanceComponent {
       });
     });
   }
+  sendRequest() {
+    this.userService.getLoggedUserId().subscribe(cnp => {
+      this.userCNP = cnp;
+      this.apartamentService.sendRequestForApartament(this.userCNP,this.selectedApartament);
+    });
+  }
   
 
   ngOnInit() {
      this.getApps();
+     this.sendRequest();
+     this.apartaments = this.apartamentService.getAvailableApartaments();
   }
   constructor(
     private authService: AuthService,
