@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,26 +37,36 @@ export class UserService {
     })
   }
 
-  getUserDetails(uid: any) {
-    this.firestore.collection('users').doc(uid).get().subscribe(user => {
-      const userData = user.data() as {cnp: string, isAdmin: boolean, email: string, };
-      console.log(userData);
-      if(user.exists) {
-        this.cnp = userData?.cnp;
-        this.roleAdmin = userData?.isAdmin;
-        this.email = userData?.email;
-      }
-      console.log(this.cnp);
-    })
+  getUserDetails(uid: any): Observable<string>{
+    return new Observable<string>(observer => {
+      this.firestore.collection('users').doc(uid).get().subscribe(user => {
+        const userData = user.data() as { cnp: string, isAdmin: boolean, email: string };
+        console.log(userData);
+        if (user.exists) {
+          this.cnp = userData?.cnp;
+          this.roleAdmin = userData?.isAdmin;
+          this.email = userData?.email;
+          observer.next(this.cnp); // Emite valoarea CNP
+          observer.complete();
+        } else {
+          observer.error('Utilizatorul nu a fost găsit');
+        }
+      });
+    });
   }
 
-  getLoggedUserId(){
-    this.user$.subscribe(user => {
-      const uid = user?.uid;
-      this.userId = uid;
-      this.getUserDetails(user?.uid);
-      console.log(this.userId);
-    })
+  getLoggedUserId() : Observable<string>{
+    return this.user$.pipe(
+      tap(user => {
+        const uid = user?.uid;
+        this.userId = uid;
+        console.log(this.userId); // Afișează valoarea UID
+      }),
+      switchMap(user => this.getUserDetails(user?.uid)),
+      tap(cnp => {
+        console.log(cnp); // Afișează valoarea CNP
+      })
+    );
   }
 
   verifyIsAdmin(uid: any) {
