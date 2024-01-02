@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
   //   })
   // }
   createAccountWithEmailAndPassword() {
-    this.registerForm.value.isAdmin = false;
+    this.registerForm.value.role = 'resident';
     if(this.registerForm.valid) {
       console.log(this.registerForm.value);
       if(this.registerForm.value.password == this.registerForm.value.confirmPassword) {
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
               phone: userData.phone,
               password: userData.password,
               confirmPassword: userData.confirmPassword,
-              isAdmin: userData.isAdmin,
+              role: userData.role,
             }).then((res:any) => {
               console.log(res);
               localStorage.setItem("token", "true");

@@ -10,6 +10,28 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MaintenanceComponent {
 
+  user$ = this.authService.getCurrentUser();
+  cnp : any = "";
+  userCNP : any = "";
+  apss : any = [];
+  
+  // getApps() {
+  //   this.userService.getLoggedUserId().subscribe(cnp => {
+  //     this.userCNP = cnp;
+  //    // console.log(this.userCNP);
+  //     this.apartamentService.getAvailableApartamentsByCNP(this.userCNP).subscribe(apps => {
+  //       this.apss = apps;
+  //       console.log(this.apss);
+  //     });
+
+      
+  //   });
+  // }
+  
+
+  ngOnInit() {
+    // this.getApps();
+  }
   constructor(
     private authService: AuthService,
     private firestore: AngularFirestore,
