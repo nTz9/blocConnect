@@ -6,6 +6,7 @@ import { LoginComponent } from './components/auth/login/login/login.component';
 import { RegisterComponent } from './components/auth/register/register/register.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance/maintenance.component';
+import { UserProfileComponent } from './components/user-profile/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -24,8 +25,11 @@ const routes: Routes = [
 {
   path: "maintenance",
   component: MaintenanceComponent
+},
+{
+  path: "user-profile",
+  component: UserProfileComponent
 }
-
 
 ];
 

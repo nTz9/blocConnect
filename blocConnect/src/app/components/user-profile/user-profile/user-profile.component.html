@@ -1,0 +1,20 @@
+<!-- user-profile.component.html -->
+<div *ngIf="userEMAIL; else noUserTemplate">
+    <h2>Profil Utilizator</h2>
+    <p><strong>CNP:</strong> {{ userCNP }}</p>
+    <p><strong>Email:</strong> {{ userEMAIL }}</p>
+    <p><strong>Prenume:</strong> {{ userFIRSTNAME }}</p>
+    <p><strong>Nume:</strong> {{ userLASTNAME }}</p>
+    <p><strong>Telefon:</strong> {{ userPHONE }}</p>
+    <p><strong>Rol:</strong> {{ userROLE }}</p>
+    <div *ngIf="userAPARTAMENTS && userAPARTAMENTS.length > 0">
+      <h3>Apartamente:</h3>
+      <ul>
+        <li *ngFor="let apartment of userAPARTAMENTS">{{ apartment }}</li>
+      </ul>
+    </div>
+  </div>
+  
+  <ng-template #noUserTemplate>
+    <p>Niciun utilizator logat.</p>
+  </ng-template>

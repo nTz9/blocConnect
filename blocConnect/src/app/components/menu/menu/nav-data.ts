@@ -1,6 +1,13 @@
 export const navbarData = [
     {
 
+        routerLink : '/user-profile',
+        icon: 'profile',
+        label: 'User Profile',
+        
+    },
+    {
+
         routerLink : '/home',
         icon: 'home',
         label: 'Home',
@@ -13,12 +20,6 @@ export const navbarData = [
         label: 'maintenance',
         
     },
-    {
 
-        routerLink : '/home',
-        icon: 'home',
-        label: 'Home',
-        
-    },
         
 ];

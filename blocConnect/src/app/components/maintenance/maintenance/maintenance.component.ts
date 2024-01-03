@@ -18,7 +18,7 @@ export class MaintenanceComponent {
   
   selectedApartament: string = "";
   apartaments: any = [];
-
+////
 
   getApps() {
     this.userService.getLoggedUserId().subscribe(cnp => {
@@ -39,9 +39,12 @@ export class MaintenanceComponent {
   
 
   ngOnInit() {
+    this.apartamentService.getAvailableApartaments().subscribe(data => {
+      this.apartaments = data; // Aici ar trebui să fie un array
+    });
      this.getApps();
      this.sendRequest();
-     this.apartaments = this.apartamentService.getAvailableApartaments();
+     
   }
   constructor(
     private authService: AuthService,

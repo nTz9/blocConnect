@@ -17,6 +17,7 @@ import { HomeComponent } from './components/home/home/home.component';
 import { MenuComponent } from './components/menu/menu/menu.component';
 import { BodyComponent } from './body/body/body.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance/maintenance.component';
+import { UserProfileComponent } from './components/user-profile/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MaintenanceComponent } from './components/maintenance/maintenance/maint
     HomeComponent,
     MenuComponent,
     BodyComponent,
-    MaintenanceComponent
+    MaintenanceComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
