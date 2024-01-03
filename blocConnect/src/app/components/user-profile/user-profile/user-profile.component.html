@@ -18,3 +18,64 @@
   <ng-template #noUserTemplate>
     <p>Niciun utilizator logat.</p>
   </ng-template>
+
+
+  <div class="profile" *ngIf="userEMAIL; else noUserTemplate">
+    <div class="col-md-4 col-lg-8">
+
+      <div class="block-content">
+        <div class="profile">
+          <div class="profile-logo">
+            <img src="assets/logo.png" alt="profile-img">
+          </div>
+          <div class="profile-fullname">
+            <span>{{ userFIRSTNAME }} {{ userLASTNAME }}</span>
+          </div>
+          <div class="profile-role">
+            <span>{{ userROLE }}</span>
+          </div>
+        </div>
+
+        <div class="profile-info">
+          <div class="profile-header">
+            <h3>Profile info</h3>
+          </div>
+          <div class="block-content">
+            <ul>
+              <li>{{ userCNP }}</li>
+            </ul>
+            <ul>
+              <li>{{ userEMAIL }}</li>
+            </ul>
+            <ul>
+              <li>{{ userFIRSTNAME }}</li>
+            </ul>
+            <ul>
+              <li><i>Last Name: </i>{{ userLASTNAME }}</li>
+            </ul>
+            <ul>
+              <li>{{ userPHONE }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-8">
+      <ul></ul>
+      <div class="block-content">
+        <div>
+          <div>
+            
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <ng-template #noUserTemplate>
+    <p>Niciun utilizator logat.</p>
+  </ng-template>
