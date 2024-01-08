@@ -9,7 +9,7 @@ export const navbarData = [
     {
 
         routerLink : '/home',
-        icon: 'home',
+        icon: 'fa fa-home',
         label: 'Home',
     
     },

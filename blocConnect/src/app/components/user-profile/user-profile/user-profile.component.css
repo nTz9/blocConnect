@@ -1,0 +1,59 @@
+.row {
+    display: flex;
+}
+.profile {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-bottom: 10px;
+    background-color: white;
+    max-width: 500px;
+    margin-right: 10px;
+}
+.profile:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.profile-content {
+    padding: 2px 16px;
+}
+.logo {
+    width: 100%;
+    height: 100%;
+}
+.rounded-cirle {
+    border-radius: 50%;
+}
+.padd-10 {
+    padding: 10px;
+}
+.padd-10-left {
+    padding-left: 10px;
+}
+
+.text-center {
+    text-align: center;
+}
+ul {
+    list-style-type: none;
+}
+.ol {
+    border-top: 2px solid black;
+    width: 100%;
+}
+
+.navbar {
+    background-color: aqua;
+    overflow: hidden;
+}
+.navbar-nav {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-nav li {
+    padding: 14px 20px;
+}
+.navbar-nav a {
+    text-decoration: none;
+    color: black;
+    display: block;
+}

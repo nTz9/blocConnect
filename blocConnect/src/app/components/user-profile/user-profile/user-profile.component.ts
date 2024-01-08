@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { UserDataService } from 'src/app/components/user-profile/user-profile/user-data/user-data.service';
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,6 +17,7 @@ export class UserProfileComponent {
     private authService: AuthService,
     private firestore: AngularFirestore,
     private userService: UserService,
+    private userDataService: UserDataService,
     ) { };
     
   user$ = this.authService.getCurrentUser();
@@ -54,6 +57,13 @@ export class UserProfileComponent {
         this.getUserDetails(uid).subscribe( 
           userData => {
             console.log('Detalii Utilizator: ', userData);
+            this.userDataService.setUserData({
+              cnp: this.userCNP,
+              email: this.userEMAIL,
+              firstName: this.userFIRSTNAME,
+              lastName: this.userLASTNAME,
+              phone: this.userPHONE,
+            })
           },
           error => {
             console.error('Eroare la obținerea detaliilor utilizatorului: ', error);

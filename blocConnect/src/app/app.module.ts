@@ -18,6 +18,7 @@ import { MenuComponent } from './components/menu/menu/menu.component';
 import { BodyComponent } from './body/body/body.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance/maintenance.component';
 import { UserProfileComponent } from './components/user-profile/user-profile/user-profile.component';
+import { UserModule } from './components/user-profile/user-profile/user-routing/user.module';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,13 @@ import { UserProfileComponent } from './components/user-profile/user-profile/use
     MenuComponent,
     BodyComponent,
     MaintenanceComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    UserModule,
 
     HttpClientModule,
     FormsModule,

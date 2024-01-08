@@ -20,57 +20,46 @@
   </ng-template>
 
 
-  <div class="profile" *ngIf="userEMAIL; else noUserTemplate">
+  <div class="row" *ngIf="userEMAIL; else noUserTemplate">
     <div class="col-md-4 col-lg-8">
-
+      <button ></button>
       <div class="block-content">
         <div class="profile">
           <div class="profile-logo">
-            <img src="assets/logo.png" alt="profile-img">
+            <img src="assets/logo.png" alt="profile-img" class="logo rounded-cirle padd-10">
           </div>
-          <div class="profile-fullname">
-            <span>{{ userFIRSTNAME }} {{ userLASTNAME }}</span>
-          </div>
-          <div class="profile-role">
-            <span>{{ userROLE }}</span>
-          </div>
-        </div>
-
-        <div class="profile-info">
-          <div class="profile-header">
-            <h3>Profile info</h3>
-          </div>
-          <div class="block-content">
-            <ul>
-              <li>{{ userCNP }}</li>
-            </ul>
-            <ul>
-              <li>{{ userEMAIL }}</li>
-            </ul>
-            <ul>
-              <li>{{ userFIRSTNAME }}</li>
-            </ul>
-            <ul>
-              <li><i>Last Name: </i>{{ userLASTNAME }}</li>
-            </ul>
-            <ul>
-              <li>{{ userPHONE }}</li>
-            </ul>
+          <div class="profile-content">
+            <div class="profile-fullname text-center">
+              <i class="fa fa-user-circle" aria-hidden="true"><span>{{ userFIRSTNAME }} {{ userLASTNAME }}</span></i>
+            </div>
+            <div class="profile-role text-center">
+              <i class="fa fa-tag" aria-hidden="true"><span>{{ userROLE }}</span></i>
+            </div>
+            <div class="ol padd-10"></div>
+            <div>Total Apartament: 5</div>
           </div>
         </div>
+        
       </div>
     </div>
+
     <div class="col-md-8 col-lg-8">
-      <ul></ul>
-      <div class="block-content">
-        <div>
-          <div>
-            
-          </div>
 
+      <div class="profile">
+        <div class="navbar">
+          <ul class="navbar-nav">
+            <li><a routerLink="user-profile-settings">Profile Setting</a></li>
+            <li><a href="#myapps">My Apartaments</a></li>
+            <li><a routerLink="user-request">My Requests</a></li>
+          </ul>
         </div>
-      </div>
-
+        <div class="profile-content">
+          <div>
+            <router-outlet></router-outlet>
+          </div>
+          
+        </div>
+        </div>
     </div>
 
   </div>

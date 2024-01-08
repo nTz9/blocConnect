@@ -1,0 +1,16 @@
+<div *ngFor = "let apartament of apss">
+    {{apartament.apartamentNumber}}, {{apartament.owners.join(', ')}}
+</div>
+
+<div class="request-form">
+    <h2>Alege Apartamentul</h2>
+    <form (ngSubmit)="sendRequest()">
+      <label for="apartamentSelect">Selecteaza Apartamentul:</label>
+      <select id="apartamentSelect" [(ngModel)]="selectedApartament" name="apartament">
+        <option *ngFor="let apartament of apartaments" [value]="apartament.id">
+          {{ apartament.apartamentNumber }}
+        </option>
+      </select>
+      <button type="submit" class="submit-btn">Trimite Cererea</button>
+    </form>
+</div>
