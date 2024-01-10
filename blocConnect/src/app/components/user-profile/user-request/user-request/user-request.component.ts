@@ -16,11 +16,15 @@ export class UserRequestComponent {
   cnp : any = "";
   userCNP : any = "";
   apss : any = [];
+  userUID : any = "";
   
   selectedApartament: any = "";
   apartaments: any = [];
-////
 
+  requestsApartaments: any = [];
+  apartamentNumber: any = "";
+////
+// pentru a afisa toate apartamentele userului cu cnp-ul curent
   getApps() {
     this.userService.getLoggedUserId().subscribe(cnp => {
       this.userCNP = cnp;
@@ -33,18 +37,33 @@ export class UserRequestComponent {
   }
   sendRequest() {
     this.userService.getLoggedUserId().subscribe(cnp => {
-      this.userCNP = cnp;
-      this.apartamentService.sendRequestForApartament(this.userCNP,this.selectedApartament);
+      this.apartamentService.sendRequestForApartament(cnp,this.selectedApartament);
+    });
+  }
+  getRequests() {
+    this.userService.getLoggedUserId().subscribe(cnp => {
+      console.log('CNP primit: ', cnp);
+      this.apartamentService.getRequestsByCNP(cnp).subscribe(requests => {
+        console.log('Cereri primite: ', requests);
+        if(requests){
+          this.requestsApartaments = requests;
+          console.log(this.requestsApartaments);
+        }else{
+          console.log("No requests");
+        }    
+      }, error => {
+        console.log('Eroare: ', error);
+      });
     });
   }
   
 
   ngOnInit() {
+    this.getRequests();
     this.apartamentService.getAvailableApartaments().subscribe(data => {
       this.apartaments = data; // Aici ar trebui să fie un array
     });
-     this.getApps();
-     this.sendRequest();
+    // this.getApps();
      
   }
   constructor(

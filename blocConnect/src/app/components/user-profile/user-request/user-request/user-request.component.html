@@ -14,3 +14,13 @@
       <button type="submit" class="submit-btn">Trimite Cererea</button>
     </form>
 </div>
+<div *ngIf="requestsApartaments.length > 0; else noData">
+  <div *ngFor="let request of requestsApartaments">
+    <p>CNP: {{ request.cnp }}</p>
+    <p>Apartament ID: {{ request.apartamentId }}</p>
+    <p>Status: {{ request.status }}</p>
+  </div>
+</div>
+<ng-template #noData>
+  <p>Nu există cereri pentru acest CNP.</p>
+</ng-template>
