@@ -42,18 +42,23 @@ export class UserRequestComponent {
   }
   getRequests() {
     this.userService.getLoggedUserId().subscribe(cnp => {
-      console.log('CNP primit: ', cnp);
-      this.apartamentService.getRequestsByCNP(cnp).subscribe(requests => {
-        console.log('Cereri primite: ', requests);
+      this.apartamentService.getUserRequestByCNP(cnp).subscribe(requests => {
         if(requests){
           this.requestsApartaments = requests;
-          console.log(this.requestsApartaments);
+    //      console.log(this.requestsApartaments);
         }else{
           console.log("No requests");
         }    
       }, error => {
         console.log('Eroare: ', error);
       });
+    });
+  }
+
+  cancelRequest(requestId: string) {
+    this.apartamentService.deleteRequest(requestId).subscribe(() => {
+      console.log('Request deleted');
+      this.getRequests();
     });
   }
   

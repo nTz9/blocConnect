@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, tap } from 'rxjs';
+import { Observable, from, map, tap } from 'rxjs';
 
 
 @Injectable({
@@ -18,15 +18,28 @@ export class ApartamentService {
   getAvailableApartamentsByCNP(cnp: string): Observable<any[]>{
     return this.firestore.collection("apartaments", ref => ref.where('owners', 'array-contains', cnp)).valueChanges();
   }
-
-  
-  getRequestsByCNP(cnp: string): Observable<any[]>{
-    return this.firestore.collection("apartamentRequests", ref => ref.where('cnp', '==', cnp)).valueChanges().pipe(
-      tap(requests => {
-        console.log('Cereri: ', requests);
-      })
+  getUserRequestByCNP(cnp: string): Observable<any[]>{
+    return this.firestore.collection('apartamentRequests', ref => 
+    ref.where('cnp', '==', cnp))
+    .snapshotChanges()
+    .pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
     );
   }
+
+  // conversie de la promisiune la observable
+  deleteRequest(requestId: string): Observable<any> {
+    return from(this.firestore.collection('apartamentRequests').doc(requestId).delete());
+  }
+
+  
+  // getRequestsByCNP(cnp: string): Observable<any[]>{
+  //   return this.firestore.collection("apartamentRequests", ref => ref.where('cnp', '==', cnp)).valueChanges();
+  // }
 
   // semn de intrebare
   getApartamentInfo(apartamentId: string): Observable<any[]>{

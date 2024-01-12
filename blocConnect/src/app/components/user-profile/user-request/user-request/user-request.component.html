@@ -19,6 +19,7 @@
     <p>CNP: {{ request.cnp }}</p>
     <p>Apartament ID: {{ request.apartamentId }}</p>
     <p>Status: {{ request.status }}</p>
+    <button (click)="cancelRequest(request.id)">Anulează Request</button>
   </div>
 </div>
 <ng-template #noData>
