@@ -21,6 +21,8 @@ export class UserRequestComponent {
   selectedApartament: any = "";
   apartaments: any = [];
 
+  apartamentInfo: any = [];
+
   requestsApartaments: any = [];
   apartamentNumber: any = "";
 ////

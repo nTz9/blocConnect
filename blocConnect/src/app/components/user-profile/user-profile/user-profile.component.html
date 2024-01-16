@@ -1,70 +1,44 @@
-<!-- user-profile.component.html -->
-<div *ngIf="userEMAIL; else noUserTemplate">
-    <h2>Profil Utilizator</h2>
-    <p><strong>CNP:</strong> {{ userCNP }}</p>
-    <p><strong>Email:</strong> {{ userEMAIL }}</p>
-    <p><strong>Prenume:</strong> {{ userFIRSTNAME }}</p>
-    <p><strong>Nume:</strong> {{ userLASTNAME }}</p>
-    <p><strong>Telefon:</strong> {{ userPHONE }}</p>
-    <p><strong>Rol:</strong> {{ userROLE }}</p>
-    <div *ngIf="userAPARTAMENTS && userAPARTAMENTS.length > 0">
-      <h3>Apartamente:</h3>
-      <ul>
-        <li *ngFor="let apartment of userAPARTAMENTS">{{ apartment }}</li>
-      </ul>
-    </div>
-  </div>
-  
-  <ng-template #noUserTemplate>
-    <p>Niciun utilizator logat.</p>
-  </ng-template>
 
-
-  <div class="row" *ngIf="userEMAIL; else noUserTemplate">
-    <div class="col-md-4 col-lg-8">
-      <button ></button>
-      <div class="block-content">
-        <div class="profile">
-          <div class="profile-logo">
-            <img src="assets/logo.png" alt="profile-img" class="logo rounded-cirle padd-10">
-          </div>
-          <div class="profile-content">
-            <div class="profile-fullname text-center">
-              <i class="fa fa-user-circle" aria-hidden="true"><span>{{ userFIRSTNAME }} {{ userLASTNAME }}</span></i>
-            </div>
-            <div class="profile-role text-center">
-              <i class="fa fa-tag" aria-hidden="true"><span>{{ userROLE }}</span></i>
-            </div>
-            <div class="ol padd-10"></div>
-            <div>Total Apartament: 5</div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-
-    <div class="col-md-8 col-lg-8">
-
+<div class="row" *ngIf="userEMAIL; else noUserTemplate">
+  <div class="col-md-4 col-lg-8">
+    <div class="block-content">
       <div class="profile">
-        <div class="navbar">
-          <ul class="navbar-nav">
-            <li><a routerLink="user-profile-settings">Profile Setting</a></li>
-            <li><a href="#myapps">My Apartaments</a></li>
-            <li><a routerLink="user-request">My Requests</a></li>
-          </ul>
+        <div class="profile-logo">
+          <img src="assets/logo.png" alt="profile-img" class="logo rounded-cirle padd-10">
         </div>
         <div class="profile-content">
-          <div>
-            <router-outlet></router-outlet>
+          <div class="profile-fullname text-center">
+            <i class="fa fa-user-circle" aria-hidden="true"><span>{{ userFIRSTNAME }} {{ userLASTNAME }}</span></i>
           </div>
-          
+          <div class="profile-role text-center">
+            <i class="fa fa-tag" aria-hidden="true"><span>{{ userROLE }}</span></i>
+          </div>
+          <div class="ol padd-10"></div>
+          <div>Total Apartament: 5</div>
         </div>
-        </div>
+      </div>    
     </div>
-
   </div>
 
+  <div class="col-md-8 col-lg-8">
+    <div class="profile">
+      <div class="navbar">
+        <ul class="navbar-nav">
+          <li><a routerLink="user-profile-settings">Profile Setting</a></li>
+          <li><a href="#myapps">My Apartaments</a></li>
+          <li><a routerLink="user-request">My Requests</a></li>
+        </ul>
+      </div>
+      <div class="profile-content">
+        <div>
+          <router-outlet></router-outlet>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
 
-  <ng-template #noUserTemplate>
-    <p>Niciun utilizator logat.</p>
-  </ng-template>
+
+<ng-template #noUserTemplate>
+  <p>Niciun utilizator logat.</p>
+</ng-template>
