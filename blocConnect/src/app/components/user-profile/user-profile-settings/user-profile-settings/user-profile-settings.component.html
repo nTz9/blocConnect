@@ -1,17 +1,23 @@
-<div>
-  <ul>
-    <li>{{ userCNP }}</li>
-  </ul>
-  <ul>
-    <li>{{ userEMAIL }}</li>
-  </ul>
-  <ul>
-    <li>{{ userFIRSTNAME }}</li>
-  </ul>
-  <ul>
-    <li><i>Last Name: </i>{{ userLASTNAME }}</li>
-  </ul>
-  <ul>
-    <li>{{ userPHONE }}</li>
-  </ul>
-</div>
+<form [formGroup] = "settingProfileForm" (ngSubmit)="updateUserData()">
+  <div class="grid-container">
+    <div class="text-section">
+      <label for="useremail">Email</label>
+        <input formControlName="email" type="email" name="email" id="email" placeholder="Email" value="{{userEMAIL}}">
+    </div>
+    <div class="text-section">
+      <label for="userfirstname">First Name</label>
+      <input formControlName="firstName" type="text" name="firstname" id="firstname" placeholder="First Name" value="{{userFIRSTNAME}}"> 
+    </div>
+    <div class="text-section">
+      <label for="userlastname">Last Name</label>
+      <input formControlName="lastName" type="text" name="lastname" id="lastname" placeholder="Last Name" value="{{userLASTNAME}}">
+    </div>
+    <div class="text-section">
+      <label for="userphone">Phone</label>
+      <input formControlName="phone" type="text" name="phone" id="phone" placeholder="Phone" value="{{userPHONE}}">
+    </div>
+    <div class="text-section">
+      <button type="submit" [disabled]="!settingProfileForm.valid" class="g padd-10 w-50 h-50">Update</button>
+    </div>
+  </div>
+</form>

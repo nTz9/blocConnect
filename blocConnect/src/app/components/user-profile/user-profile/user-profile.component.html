@@ -1,6 +1,4 @@
-
 <div class="row" *ngIf="userEMAIL; else noUserTemplate">
-  <div class="col-md-4 col-lg-8">
     <div class="block-content">
       <div class="profile">
         <div class="profile-logo">
@@ -13,29 +11,31 @@
           <div class="profile-role text-center">
             <i class="fa fa-tag" aria-hidden="true"><span>{{ userROLE }}</span></i>
           </div>
+          <div class="profile-cnp text-center">
+            <i class="fa fa-id-card" aria-hidden="true"><span>{{ userCNP }}</span></i>
+          </div>
           <div class="ol padd-10"></div>
           <div>Total Apartament: 5</div>
         </div>
-      </div>    
-    </div>
-  </div>
-
-  <div class="col-md-8 col-lg-8">
-    <div class="profile">
-      <div class="navbar">
-        <ul class="navbar-nav">
-          <li><a routerLink="user-profile-settings">Profile Setting</a></li>
-          <li><a href="#myapps">My Apartaments</a></li>
-          <li><a routerLink="user-request">My Requests</a></li>
-        </ul>
-      </div>
-      <div class="profile-content">
-        <div>
-          <router-outlet></router-outlet>
-        </div>  
       </div>
     </div>
-  </div>
+    <div class="block-content">
+      <div class="profile">
+        <div class="navbar">
+          <ul class="navbar-nav">
+            <li><a routerLink="user-profile-settings">Profile Setting</a></li>
+            <li><a href="#myapps">My Apartaments</a></li>
+            <li><a routerLink="user-request">My Requests</a></li>
+          </ul>
+        </div>
+        <div class="profile-content">
+          <div>
+            <router-outlet></router-outlet>
+          </div>  
+        </div>
+      </div>
+    </div>
+    
 </div>
 
 

@@ -1,0 +1,38 @@
+.grid-container {
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: auto auto;
+    padding: 10px;
+}
+.text-section {
+    padding: 10px;
+    text-align: left;
+}
+input {
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    height: 30px;
+    padding: 10px;
+}
+input[type=text]:focus {
+    border: 1px solid #555;
+}
+button {
+    margin: 8px 0;
+    border: 0;
+    border-radius: 10px;
+}
+.g {
+    background-color: #02B493;
+    color: white;
+}
+.w-50 {
+    width: 50%;
+}
+.h-50 {
+    height: 50px;
+}

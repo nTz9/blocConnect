@@ -16,6 +16,7 @@ import { FormsModule,ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     UserRoutingModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   exports: [UserProfileSettingsComponent, UserRequestComponent]
 })
