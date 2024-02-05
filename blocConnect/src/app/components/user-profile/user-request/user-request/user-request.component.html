@@ -2,7 +2,7 @@
     {{apartament.apartamentNumber}}, {{apartament.owners.join(', ')}}
 </div>
 
-<div class="request-form">
+<div class="container">
     <h2>Alege Apartamentul</h2>
     <form (ngSubmit)="sendRequest()">
       <label for="apartamentSelect">Selecteaza Apartamentul:</label>
@@ -15,11 +15,24 @@
     </form>
 </div>
 <div *ngIf="requestsApartaments.length > 0; else noData">
-  <div *ngFor="let request of requestsApartaments">
-    <p>CNP: {{ request.cnp }}</p>
-    <p>Apartament ID: {{ request.apartamentId }}</p>
-    <p>Status: {{ request.status }}</p>
-    <button (click)="cancelRequest(request.id)">Anulează Request</button>
+  <div *ngFor="let request of displayRequests" class="container">
+    <div class="header">
+      User Request
+    </div>
+    <div class="detail">
+      User CNP: {{request.cnp}}
+    </div>
+    <div class="detail">
+      Apartament ID: {{request.apartamentId}}
+    </div>
+    <div class="detail">
+      Status: {{request.status}}
+    </div>
+    <button (click)="cancelRequest(request.id)" class="cancel-button">Anulează Request</button>
+  </div>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
   </div>
 </div>
 <ng-template #noData>

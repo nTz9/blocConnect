@@ -25,6 +25,12 @@ export class UserRequestComponent {
 
   requestsApartaments: any = [];
   apartamentNumber: any = "";
+
+
+  currentPage: number = 1;
+  requestsPerPage: number = 1;
+  displayRequests: any = [];
+  totalPages: number = 0;
 ////
 // pentru a afisa toate apartamentele userului cu cnp-ul curent
   getApps() {
@@ -47,6 +53,8 @@ export class UserRequestComponent {
       this.apartamentService.getUserRequestByCNP(cnp).subscribe(requests => {
         if(requests){
           this.requestsApartaments = requests;
+          this.totalPages = Math.ceil(this.requestsApartaments.length / this.requestsPerPage);
+          this.changePage(1);
     //      console.log(this.requestsApartaments);
         }else{
           console.log("No requests");
@@ -56,6 +64,24 @@ export class UserRequestComponent {
       });
     });
   }
+
+  changePage(page: number) {
+    this.currentPage = page;
+    const start = (page - 1) * this.requestsPerPage;
+    const end = start + this.requestsPerPage;
+    this.displayRequests = this.requestsApartaments.slice(start, end);
+  }
+
+  nextPage() {
+    this.changePage(this.currentPage + 1);
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.changePage(this.currentPage - 1);
+    }
+  }
+
 
   cancelRequest(requestId: string) {
     this.apartamentService.deleteRequest(requestId).subscribe(() => {
