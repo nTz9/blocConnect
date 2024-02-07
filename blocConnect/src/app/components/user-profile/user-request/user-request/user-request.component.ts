@@ -51,23 +51,32 @@ export class UserRequestComponent {
   getRequests() {
     this.userService.getLoggedUserId().subscribe(cnp => {
       this.apartamentService.getUserRequestByCNP(cnp).subscribe(requests => {
-        if(requests){
-
-          const apartamentIds = requests.map((request: any) => request.apartamentId);
-          console.log(apartamentIds);
-
-          this.apartamentService.getApartamentInfo(apartamentIds[0]).subscribe(apartaments => {
-            this.apartamentInfo = apartaments;
-            console.log(this.apartamentInfo);
+        if (requests && requests.length > 0) {
+          this.requestsApartaments = requests; // Salvăm cererile în starea componentei
+          this.totalPages = Math.ceil(requests.length / this.requestsPerPage);
+          this.changePage(1); // Inițializăm afișarea paginată a cererilor
+          
+          // Iterăm prin fiecare request pentru a prelua detaliile apartamentului
+          requests.forEach((request, index) => {
+            if (request.apartamentId) {
+              this.apartamentService.getApartamentInfo(request.apartamentId).subscribe(apartamentDetails => {
+                // Actualizăm request-ul cu detaliile apartamentului
+                this.requestsApartaments[index] = {
+                  ...this.requestsApartaments[index],
+                  apartamentInfo: apartamentDetails
+                };
+  
+                console.log('Apartament info: ', apartamentDetails);
+                // Dacă este ultimul request, actualizăm afișarea
+                if (index === requests.length - 1) {
+                  this.changePage(this.currentPage); // Re-afișăm pagina curentă pentru a reflecta noile date
+                }
+              });
+            }
           });
-
-          this.requestsApartaments = requests;
-          this.totalPages = Math.ceil(this.requestsApartaments.length / this.requestsPerPage);
-          this.changePage(1);
-     //     console.log(this.requestsApartaments);
-        }else{
+        } else {
           console.log("No requests");
-        }    
+        }
       }, error => {
         console.log('Eroare: ', error);
       });

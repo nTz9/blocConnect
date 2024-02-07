@@ -25,6 +25,9 @@
     <div class="detail">
       Apartament ID: {{request.apartamentId}}
     </div>
+    <div class="detail" *ngIf="request.apartamentInfo">
+      Număr Apartament: {{request.apartamentInfo.apartamentNumber}}
+    </div>
     <div class="detail">
       Status: {{request.status}}
     </div>
