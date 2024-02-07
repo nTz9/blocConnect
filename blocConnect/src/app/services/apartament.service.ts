@@ -42,8 +42,8 @@ export class ApartamentService {
   // }
 
   // semn de intrebare
-  getApartamentInfo(apartamentId: string): Observable<any[]>{
-    return this.firestore.collection("apartaments", ref => ref.where('apartamentId', '==', apartamentId)).valueChanges();
+  getApartamentInfo(apartamentId: any): Observable<any[]>{
+    return this.firestore.doc(`apartaments/${apartamentId}`).valueChanges() as Observable<any[]>;
   }
 ////
 sendRequestForApartament(cnp: string, apartamentId: string): void{

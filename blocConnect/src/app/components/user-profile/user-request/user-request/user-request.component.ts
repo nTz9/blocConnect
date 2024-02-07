@@ -52,10 +52,19 @@ export class UserRequestComponent {
     this.userService.getLoggedUserId().subscribe(cnp => {
       this.apartamentService.getUserRequestByCNP(cnp).subscribe(requests => {
         if(requests){
+
+          const apartamentIds = requests.map((request: any) => request.apartamentId);
+          console.log(apartamentIds);
+
+          this.apartamentService.getApartamentInfo(apartamentIds[0]).subscribe(apartaments => {
+            this.apartamentInfo = apartaments;
+            console.log(this.apartamentInfo);
+          });
+
           this.requestsApartaments = requests;
           this.totalPages = Math.ceil(this.requestsApartaments.length / this.requestsPerPage);
           this.changePage(1);
-    //      console.log(this.requestsApartaments);
+     //     console.log(this.requestsApartaments);
         }else{
           console.log("No requests");
         }    
