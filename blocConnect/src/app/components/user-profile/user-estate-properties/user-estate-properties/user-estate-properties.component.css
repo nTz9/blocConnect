@@ -1,0 +1,23 @@
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .table-custom th, .table-custom td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-custom th {
+    background-color: #f2f2f2;
+  }
+  
+  .table-custom img {
+    width: 50px; /* Ajustează acestă valoare după preferințe */
+    height: auto;
+    border-radius: 50%; /* Oferă un aspect rotund imaginii, opțional */
+    object-fit: cover;
+  }
+  

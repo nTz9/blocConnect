@@ -1,1 +1,27 @@
-<p>user-estate-properties works!</p>
+<div *ngIf="apartaments && apartaments.length > 0; else noApartaments">
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nume</th>
+          <th>Scara</th>
+          <th>Actions</th>
+          <!-- Adaugă alte coloane după necesități -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let apartament of apartaments">
+          <td><img src="assets/apartament.png" alt="Logo" class="logo"></td>
+          <td>{{ apartament.name }}</td>
+          <td>{{ apartament.Scara }}</td>
+          <td>
+            <button (click)="cancelResidence(apartament.id)" class="btn-cancel">Delete Property</button>
+          </td>
+          <!-- Adaugă alte celule pentru informațiile dorite -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noApartaments>
+    <p>Nu există apartamente disponibile.</p>
+  </ng-template>

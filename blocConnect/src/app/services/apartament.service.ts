@@ -16,7 +16,15 @@ export class ApartamentService {
   apartaments: any[] = [];
 
   getAvailableApartamentsByCNP(cnp: string): Observable<any[]>{
-    return this.firestore.collection("apartaments", ref => ref.where('owners', 'array-contains', cnp)).valueChanges();
+    return this.firestore.collection("apartaments", ref => ref.where('owners', 'array-contains', cnp)).snapshotChanges()
+    .pipe(
+      map(actions => actions.map(a => ({
+        payload: a.payload,
+        id: a.payload.doc.id,
+        ...a.payload.doc.data() as any
+      }))
+    )
+    );
   }
   getUserRequestByCNP(cnp: string): Observable<any[]>{
     return this.firestore.collection('apartamentRequests', ref => 
@@ -30,6 +38,35 @@ export class ApartamentService {
       }))
     );
   }
+
+  async deleteProperty(documentId: string, cnpToRemove: string): Promise<void> {
+    const apartamentRef = this.firestore.collection('apartaments').doc(documentId);
+  
+    try {
+      const docSnapshot = await apartamentRef.get().toPromise();
+  
+      // Verifică dacă docSnapshot există
+      if (!docSnapshot || !docSnapshot.exists) {
+        throw new Error("Document does not exist or could not be fetched!");
+      }
+  
+      const apartament = docSnapshot.data() as ApartamentData;
+      const updatedOwners = apartament.owners.filter(cnp => cnp !== cnpToRemove);
+  
+      if (updatedOwners.length === 0) {
+        // Dacă lista de proprietari este goală, șterge documentul
+        await apartamentRef.delete();
+        console.log("Apartament deleted successfully because it has no owners.");
+      } else {
+        // Actualizează documentul cu noua listă de proprietari
+        await apartamentRef.update({ owners: updatedOwners });
+        console.log("CNP removed successfully.");
+      }
+    } catch (error) {
+      console.error("Error removing CNP from apartament:", error);
+    }
+  }
+  
 
   // conversie de la promisiune la observable
   deleteRequest(requestId: string): Observable<any> {
@@ -62,4 +99,8 @@ sendRequestForApartament(cnp: string, apartamentId: string): void{
     return this.firestore.collection('apartaments').valueChanges({ idField: 'id'});
   }
 
+}
+interface ApartamentData {
+  id: string;
+  owners: string[];
 }
