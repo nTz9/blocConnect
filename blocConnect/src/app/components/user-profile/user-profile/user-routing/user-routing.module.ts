@@ -4,6 +4,7 @@ import { UserProfileSettingsComponent } from '../../user-profile-settings/user-p
 import { UserProfileComponent } from '../user-profile.component';
 import { UserRequestComponent } from '../../user-request/user-request/user-request.component';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { UserEstatePropertiesComponent } from '../../user-estate-properties/user-estate-properties/user-estate-properties.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'user-request',
         component: UserRequestComponent
+      },
+      {
+        path:'user-properties',
+        component: UserEstatePropertiesComponent
       }
     ]
   }
