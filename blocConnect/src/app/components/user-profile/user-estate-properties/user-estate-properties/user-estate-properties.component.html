@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let apartament of apartaments">
+        <tr *ngFor="let apartament of displayApartaments">
           <td><img src="assets/apartament.png" alt="Logo" class="logo"></td>
           <td>{{ apartament.name }}</td>
           <td>{{ apartament.Scara }}</td>
@@ -21,6 +21,11 @@
         </tr>
       </tbody>
     </table>
+    <!-- Butonul pentru pagina anterioară -->
+<button (click)="previousPage()" [disabled]="currentPage === 1">Previous Page</button>
+
+<!-- Butonul pentru pagina următoare -->
+<button (click)="nextPage()" [disabled]="currentPage * apartamentsPerPage >= totalApartaments">Next Page</button>
   </div>
   <ng-template #noApartaments>
     <p>Nu există apartamente disponibile.</p>

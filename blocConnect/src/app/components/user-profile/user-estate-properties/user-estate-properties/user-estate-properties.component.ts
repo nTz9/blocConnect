@@ -28,12 +28,20 @@ export class UserEstatePropertiesComponent {
   cnp: any = "";
   apartaments: any = [];
 
+
+  currentPage: number = 0;
+  apartamentsPerPage: number = 5;
+  pageSize: number = 5;
+  totalApartaments: number = 0;
+  displayApartaments: any = [];
+
   getApartament() {
     this.userService.getLoggedUserId().subscribe(cnp => {
       this.apartamentService.getAvailableApartamentsByCNP(cnp).subscribe(apps => {
         if (apps && apps.length > 0) {
           this.apartaments = apps;
-          console.log(this.apartaments);
+          this.totalApartaments = apps.length;
+          this.changePage(1); // Inițializează afișarea primei pagini
         } else {
           console.log("No apartaments found");
         }
@@ -41,6 +49,28 @@ export class UserEstatePropertiesComponent {
         console.log('Eroare: ', error);
       });
     });
+  }
+
+  changePage(page: number) {
+    this.currentPage = page;
+    const start = (page - 1) * this.apartamentsPerPage;
+    const end = start + this.apartamentsPerPage;
+    this.displayApartaments = this.apartaments.slice(start, end);
+  }
+
+  nextPage() {
+    const nextPage = this.currentPage + 1;
+    const totalPossiblePages = Math.ceil(this.apartaments.length / this.apartamentsPerPage);
+    if (nextPage <= totalPossiblePages) {
+      this.changePage(nextPage);
+    }
+  }
+  
+  previousPage() {
+    if (this.currentPage > 1) {
+      const previousPage = this.currentPage - 1;
+      this.changePage(previousPage);
+    }
   }
 
 
