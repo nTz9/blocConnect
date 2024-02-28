@@ -2,7 +2,7 @@ export const navbarData = [
     {
 
         routerLink : '/user-profile',
-        icon: 'profile',
+        icon: 'fa fa-user',
         label: 'User Profile',
         
     },
@@ -20,6 +20,11 @@ export const navbarData = [
         label: 'maintenance',
         
     },
+    {
+        routerLink :'/water-meter',
+        icon: 'fa fa-tint',
+        label: 'Water Meter'
+    }
 
         
 ];

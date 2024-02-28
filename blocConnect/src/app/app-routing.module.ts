@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/auth/register/register/register.
 import { HomeComponent } from './components/home/home/home.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance/maintenance.component';
 import { UserProfileComponent } from './components/user-profile/user-profile/user-profile.component';
+import { WaterMeterComponent } from './components/water-meter/water-meter/water-meter.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
 {
   path: "user-profile",
   component: UserProfileComponent
+},
+{
+  path: "water-meter",
+  component: WaterMeterComponent
 }
 
 ];

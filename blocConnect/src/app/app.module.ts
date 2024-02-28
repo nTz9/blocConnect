@@ -20,6 +20,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance/maint
 import { UserProfileComponent } from './components/user-profile/user-profile/user-profile.component';
 import { UserModule } from './components/user-profile/user-profile/user-routing/user.module';
 import { UserEstatePropertiesComponent } from './components/user-profile/user-estate-properties/user-estate-properties/user-estate-properties.component';
+import { WaterMeterComponent } from './components/water-meter/water-meter/water-meter.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserEstatePropertiesComponent } from './components/user-profile/user-es
     BodyComponent,
     MaintenanceComponent,
     UserProfileComponent,
+    WaterMeterComponent,
   ],
   imports: [
     BrowserModule,

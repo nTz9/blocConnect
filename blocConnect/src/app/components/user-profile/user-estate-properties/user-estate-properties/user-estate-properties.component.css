@@ -2,10 +2,11 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   .table-custom th, .table-custom td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
     border-bottom: 1px solid #ddd;
   }
@@ -21,3 +22,15 @@
     object-fit: cover;
   }
   
+  .align-center {
+    text-align: center;
+  }
+  .btn-cancel {
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
