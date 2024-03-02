@@ -1,1 +1,39 @@
-<p>water-meter works!</p>
+<div class="form-container">
+    <div class="form-section">
+        <div class="img-logo">
+          <img src="assets/logo-tree.png" alt="Logo" class="logo">
+        </div>
+        <form [formGroup]="waterMeterForm" (ngSubmit)="onSubmit()">
+          <div class="cnp-section">
+            <input id="cnp" type="text" formControlName="userCNP" readonly placeholder="CNP">
+          </div>
+          
+          <div class="apartament-section">
+            <label for="apartamentId">Alegeți Apartamentul:</label>
+            <select id="apartamentId" formControlName="apartamentId">
+              <option value="">Selectați un apartament</option>
+              <option *ngFor="let apartament of apartaments" [value]="apartament.id">{{apartament.apartamentNumber}}</option>
+            </select>
+          </div>
+          
+          <div class="date-section">
+            <label for="readingDate">Data Citirii:</label>
+            <input id="readingDate" type="date" formControlName="readingDate">
+          </div>
+          
+          <div class="readingValue-section">
+            <input type="text" formControlName="readingvalue" class="input-field" placeholder="Reading Value">
+            <div class="underline"></div>
+          </div>
+          
+          <div class="comments-section">
+            <input type="text" formControlName="comments" placeholder="Comments">
+          </div>
+          
+          <button type="submit" [disabled]="!waterMeterForm.valid">Trimite</button>
+        </form>
+    </div>
+</div>
+
+
+
