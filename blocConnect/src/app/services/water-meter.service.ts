@@ -11,4 +11,7 @@ export class WaterMeterService {
   ngOnInit(): void {
   }
 
+  addMeterReading(meterReadingData: any) {
+    return this.firestore.collection('meterReadings').add(meterReadingData);
+  }
 }

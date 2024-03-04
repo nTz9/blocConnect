@@ -10,7 +10,7 @@
           
           <div class="apartament-section">
             <label for="apartamentId">Alegeți Apartamentul:</label>
-            <select id="apartamentId" formControlName="apartamentId">
+            <select id="apartamentID" formControlName="apartamentID">
               <option value="">Selectați un apartament</option>
               <option *ngFor="let apartament of apartaments" [value]="apartament.id">{{apartament.apartamentNumber}}</option>
             </select>
@@ -21,13 +21,14 @@
             <input id="readingDate" type="date" formControlName="readingDate">
           </div>
           
-          <div class="readingValue-section">
-            <input type="text" formControlName="readingvalue" class="input-field" placeholder="Reading Value">
-            <div class="underline"></div>
+          <div class="container">
+            <input type="text" formControlName="readingvalue" class="input">
+            <label for="input"  class="label">Enter Value</label>
           </div>
           
-          <div class="comments-section">
-            <input type="text" formControlName="comments" placeholder="Comments">
+          <div class="container">
+            <input type="text" formControlName="notes" class="input">
+            <label for="input" class="label">Notes</label>
           </div>
           
           <button type="submit" [disabled]="!waterMeterForm.valid">Trimite</button>
