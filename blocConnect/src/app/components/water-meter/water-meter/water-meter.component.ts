@@ -18,11 +18,12 @@ export class WaterMeterComponent implements OnInit{
   apartaments: any = [];
   userCNP: any = "";
 
+  selectedFile: File | null = null;
 
   waterMeterForm: FormGroup = new FormGroup ({
     userCNP: new FormControl('', [Validators.required]),
     apartamentId: new FormControl('', [Validators.required]),
- //   imageURL: new FormControl('', [Validators.required]),
+    imageURL: new FormControl('', [Validators.required]),
     readingDate: new FormControl('', [Validators.required]),
     readingvalue: new FormControl('', [Validators.required]),
     notes: new FormControl('', [Validators.required]),
@@ -32,7 +33,7 @@ export class WaterMeterComponent implements OnInit{
     this.waterMeterForm = this.formBuilder.group({
       userCNP: [{value: '', disabled: true}],
       apartamentID: ['', [Validators.required]],
- //     imageURL: ['', [Validators.required]],
+      imageURL: ['', [Validators.required]],
       readingDate: ['', [Validators.required]],
       readingvalue: ['', [Validators.required]],
       notes: ['', [Validators.required]],
@@ -63,25 +64,36 @@ export class WaterMeterComponent implements OnInit{
     });
   }
 
-  onSubmit(): void {
-    if (this.waterMeterForm.valid) {
-      const waterMeterData = this.waterMeterForm.getRawValue();
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+    }
+  }
 
-      const waterMeter = {
-        userCNP: waterMeterData.userCNP,
-        apartamentID: waterMeterData.apartamentID,
-        readingDate: waterMeterData.readingDate,
-        readingvalue: waterMeterData.readingvalue,
-        notes: waterMeterData.notes,
-        status: 'pending'
-      };
-      this.waterMeterService.addMeterReading(waterMeter).then(docRef => {
-        console.log("Document written with ID: ", docRef.id);
+  onSubmit(): void {
+    if (this.waterMeterForm.valid && this.selectedFile) {
+      this.waterMeterService.uploadImageAndGetURL(this.selectedFile).then(imageURL => {
+        const waterMeterData = this.waterMeterForm.getRawValue();
+  
+        const waterMeter = {
+          userCNP: waterMeterData.userCNP,
+          apartamentID: waterMeterData.apartamentID,
+          readingDate: waterMeterData.readingDate,
+          readingvalue: waterMeterData.readingvalue,
+          notes: waterMeterData.notes,
+          imageURL: imageURL, // Foloseste URL-ul imaginii obtinut dupa incarcare
+          status: 'pending'
+        };
+  
+        this.waterMeterService.addMeterReading(waterMeter).then(docRef => {
+          console.log("Document written with ID: ", docRef.id);
+        }).catch(error => {
+          console.error("Error adding document: ", error);
+        });
+  
       }).catch(error => {
-        console.error("Error adding document: ", error);
+        console.error("Error uploading image: ", error);
       });
-    } else {
-      alert("Vă rugăm să completați toate câmpurile obligatorii.");
     }
   }
 

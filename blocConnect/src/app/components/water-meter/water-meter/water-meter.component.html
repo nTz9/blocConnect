@@ -21,6 +21,10 @@
             <input id="readingDate" type="date" formControlName="readingDate">
           </div>
           
+          <div>
+            <input type="file" (change)="onFileSelected($event)" formControlName="imageURL">
+          </div>
+
           <div class="container">
             <input type="text" formControlName="readingvalue" class="input">
             <label for="input"  class="label">Enter Value</label>
