@@ -3,14 +3,14 @@
         <div class="img-logo">
           <img src="assets/logo-tree.png" alt="Logo" class="logo">
         </div>
-        <form [formGroup]="waterMeterForm" (ngSubmit)="onSubmit()">
-          <div class="cnp-section">
-            <input id="cnp" type="text" formControlName="userCNP" readonly placeholder="CNP">
-          </div>
+        <form [formGroup]="waterMeterForm" (ngSubmit)="onSubmit()" class="water-meter-form">
+          <!-- <div class="input-field">
+            <input id="cnp" type="text" formControlName="userCNP" readonly>
+          </div> -->
           
           <div class="apartament-section">
             <label for="apartamentId">Alegeți Apartamentul:</label>
-            <select id="apartamentID" formControlName="apartamentID">
+            <select id="apartamentID" formControlName="apartamentID" class="select-field">
               <option value="">Selectați un apartament</option>
               <option *ngFor="let apartament of apartaments" [value]="apartament.id">{{apartament.apartamentNumber}}</option>
             </select>
@@ -18,21 +18,28 @@
           
           <div class="date-section">
             <label for="readingDate">Data Citirii:</label>
-            <input id="readingDate" type="date" formControlName="readingDate">
+            <input id="readingDate" type="date" formControlName="readingDate" class="calendar">
           </div>
           
-          <div>
-            <input type="file" (change)="onFileSelected($event)" formControlName="imageURL">
+          <div class="file-section">
+            <span class="title">Upload your file</span>
+            <p class="paragraph">File should be an image</p>
+            <label for="file-input" class="drop-container">
+              <span class="drop-title">Drop files here</span>
+              or
+              <input type="file" (change)="onFileSelected($event)" formControlName="imageURL" id="file-input">
+            </label>
+            
           </div>
 
-          <div class="container">
-            <input type="text" formControlName="readingvalue" class="input">
-            <label for="input"  class="label">Enter Value</label>
+          <div class="input-field">
+            <input type="text" formControlName="readingvalue" id="readingValue">
+            <label for="readingValue">Enter Value</label>
           </div>
           
-          <div class="container">
-            <input type="text" formControlName="notes" class="input">
-            <label for="input" class="label">Notes</label>
+          <div class="input-field">
+            <input type="text" formControlName="notes">
+            <label for="input-section">Notes</label>
           </div>
           
           <button type="submit" [disabled]="!waterMeterForm.valid">Trimite</button>
