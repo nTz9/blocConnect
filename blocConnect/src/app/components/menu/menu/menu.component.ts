@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { navbarData } from './nav-data';
+import { INavbarData } from './helper';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -22,6 +23,7 @@ export class MenuComponent implements OnInit{
 
   collapsed = false;
   navData = navbarData;
+  multiple: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
@@ -46,5 +48,17 @@ export class MenuComponent implements OnInit{
     this.collapsed = false;
     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
+
+  handleClick(item: INavbarData): void {
+    if(!this.multiple) {
+      for(let modelItem of this.navData){
+        if(item !== modelItem && modelItem.expanded){
+          modelItem.expanded = false;
+        }
+      }
+    }
+    item.expanded = !item.expanded;
+  }
+
 
 }

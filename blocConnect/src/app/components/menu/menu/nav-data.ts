@@ -1,4 +1,6 @@
-export const navbarData  = [
+import { INavbarData } from "./helper";
+
+export const navbarData: INavbarData[]  = [
     {
 
         routeLink : '/user-profile',
@@ -24,6 +26,16 @@ export const navbarData  = [
         routeLink :'/water-meter',
         icon: 'fa fa-tint',
         label: 'Water Meter',
+        items: [
+            {
+                routeLink : '/water-meter',
+                label: 'Add Water Meter',
+            },
+            {
+                routeLink : '/water-meter-list',
+                label: 'Water Meter List',
+            }
+        ]
     }
         
 ];

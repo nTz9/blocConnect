@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import { environment } from 'src/environments/environment';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -21,6 +23,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile/use
 import { UserModule } from './components/user-profile/user-profile/user-routing/user.module';
 import { UserEstatePropertiesComponent } from './components/user-profile/user-estate-properties/user-estate-properties/user-estate-properties.component';
 import { WaterMeterComponent } from './components/water-meter/water-meter/water-meter.component';
+import { SublevelMenuComponent } from './components/menu/sublevel-menu/sublevel-menu/sublevel-menu.component';
+import { WaterMeterListComponent } from './components/water-meter/water-meter-list/water-meter-list/water-meter-list.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,8 @@ import { WaterMeterComponent } from './components/water-meter/water-meter/water-
     MaintenanceComponent,
     UserProfileComponent,
     WaterMeterComponent,
+    SublevelMenuComponent,
+    WaterMeterListComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +49,8 @@ import { WaterMeterComponent } from './components/water-meter/water-meter/water-
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+
+    BrowserAnimationsModule,
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
