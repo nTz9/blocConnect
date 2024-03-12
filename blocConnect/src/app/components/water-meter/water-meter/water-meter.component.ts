@@ -26,6 +26,7 @@ export class WaterMeterComponent implements OnInit{
     imageURL: new FormControl('', [Validators.required]),
     readingDate: new FormControl('', [Validators.required]),
     readingvalue: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
     notes: new FormControl('', [Validators.required]),
   })
 
@@ -36,6 +37,7 @@ export class WaterMeterComponent implements OnInit{
       imageURL: ['', [Validators.required]],
       readingDate: ['', [Validators.required]],
       readingvalue: ['', [Validators.required]],
+      type: ['', [Validators.required]],
       notes: ['', [Validators.required]],
     })
   }
@@ -82,6 +84,7 @@ export class WaterMeterComponent implements OnInit{
           readingvalue: waterMeterData.readingvalue,
           notes: waterMeterData.notes,
           imageURL: imageURL, // Foloseste URL-ul imaginii obtinut dupa incarcare
+          type: waterMeterData.type,
           status: 'pending'
         };
   

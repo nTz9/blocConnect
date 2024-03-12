@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize, takeLast } from 'rxjs';
+import { Observable, finalize, map, takeLast } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,19 @@ export class WaterMeterService {
 
   addMeterReading(meterReadingData: any) {
     return this.firestore.collection('meterReadings').add(meterReadingData);
+  }
+
+  getMeterReadingsByCNP(cnp: string): Observable<any[]>{
+    return this.firestore.collection('meterReadings', ref => 
+    ref.where('userCNP', '==', cnp))
+    .snapshotChanges()
+    .pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
   }
 
   uploadImageAndGetURL(file: File): Promise<string> {

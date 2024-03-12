@@ -36,7 +36,13 @@
             <input type="text" formControlName="readingvalue" id="readingValue">
             <label for="readingValue">Enter Value</label>
           </div>
-          
+          <div class="input-field">
+            <label for="type">Choose Water Meter Type:</label>
+            <select id="type" formControlName="type" class="select-field">
+                <option value="cold">Cold Water Meter</option>
+                <option value="hot">Hot Water Meter</option>
+            </select>
+        </div>
           <div class="input-field">
             <input type="text" formControlName="notes">
             <label for="input-section">Notes</label>
