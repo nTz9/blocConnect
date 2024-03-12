@@ -1,30 +1,29 @@
-export const navbarData = [
+export const navbarData  = [
     {
 
-        routerLink : '/user-profile',
+        routeLink : '/user-profile',
         icon: 'fa fa-user',
         label: 'User Profile',
         
     },
     {
 
-        routerLink : '/home',
-        icon: 'fa fa-home',
+        routeLink : '/home',
+        icon: 'fal fa-home',
         label: 'Home',
     
     },
     {
 
-        routerLink : '/maintenance',
+        routeLink : '/maintenance',
         icon: 'maintenance',
         label: 'maintenance',
         
     },
     {
-        routerLink :'/water-meter',
+        routeLink :'/water-meter',
         icon: 'fa fa-tint',
-        label: 'Water Meter'
+        label: 'Water Meter',
     }
-
         
 ];

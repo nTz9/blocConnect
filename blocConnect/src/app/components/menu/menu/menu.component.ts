@@ -10,7 +10,8 @@ interface SideNavToggle {
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+
 })
 export class MenuComponent implements OnInit{
 
@@ -20,12 +21,12 @@ export class MenuComponent implements OnInit{
   screenWidth = 0;
 
   collapsed = false;
-  navData = navbarData; 
+  navData = navbarData;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.screenWidth = window.innerWidth;
-    if (this.screenWidth < 768) {
+    if (this.screenWidth <= 768) {
       this.collapsed = false;
       this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth});
     }
@@ -41,11 +42,9 @@ export class MenuComponent implements OnInit{
     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
 
-  closeCollapse(): void {
+  closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
-
-
 
 }
