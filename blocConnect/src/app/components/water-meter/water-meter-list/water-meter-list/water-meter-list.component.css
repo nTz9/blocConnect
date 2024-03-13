@@ -1,0 +1,33 @@
+.container{
+  width: 100%;
+  height: auto;
+  background: #d9d9d9;
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+
+}
+td, th {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.blue-cell {
+    background-color: blue;
+    color: white;
+  }
+  
+  .red-cell {
+    background-color: red;
+    color: white;
+  }
+  

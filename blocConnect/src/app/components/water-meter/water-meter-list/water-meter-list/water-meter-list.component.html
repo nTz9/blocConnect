@@ -1,1 +1,22 @@
-<p>water-meter-list works!</p>
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Type Water Meter</th>
+        <th>Index</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reading of getPaginatedData()">
+        <td>{{ reading.readingDate }}</td>
+        <td [ngClass]="{ 'blue-cell': reading.type === 'cold', 'red-cell': reading.type === 'Hot' }">{{ reading.type }}</td>
+        <td>{{ reading.readingvalue }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === getPageCount()">Next</button>
+  </div>
+</div>
