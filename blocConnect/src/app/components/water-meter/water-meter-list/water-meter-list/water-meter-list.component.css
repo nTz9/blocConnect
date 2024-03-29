@@ -22,12 +22,73 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 .blue-cell {
-    background-color: blue;
-    color: white;
-  }
+  background-color: blue;
+  color: white;
+}
   
-  .red-cell {
-    background-color: red;
-    color: white;
-  }
+.red-cell {
+  background-color: red;
+  color: white;
+}
+  
+.apartment {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.expand-header {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon.expanded {
+  transform: rotate(180deg);
+}
+  
+.apartment-details {
+  display: none;
+  padding: 10px;
+}
+  
+.apartment-details.expanded {
+  display: block;
+}
+  
+.apartment-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+  
+.apartment-details th,
+.apartment-details td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+  
+.apartment-details th {
+  background-color: #f2f2f2;
+}
+  
+.apartment-details span {
+  display: block;
+  margin-top: 10px;
+}
+  
+.button-group {
+  margin-top: 10px;
+}
+  
+.button-group button {
+  margin-right: 10px;
+}
   

@@ -15,6 +15,9 @@ export class WaterMeterListComponent {
   meterReadings: any = [];
   apartaments: any = [];
 
+  selectedApartment: number | null = null;
+  dropdownOpen: boolean = false;
+
   currentPage = 1;
   itemsPerPage = 2;
 
@@ -62,6 +65,13 @@ export class WaterMeterListComponent {
     })
   }
 
+  toggleDropdown(apartmentId: number): void {
+    if (this.selectedApartment === apartmentId) {
+      this.selectedApartment = null;
+    } else {
+      this.selectedApartment = apartmentId;
+    }
+  }
   getPageCount(): number {
     return Math.ceil(this.meterReadings.length / this.itemsPerPage);
   }
