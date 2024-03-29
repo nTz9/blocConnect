@@ -19,7 +19,7 @@ export class WaterMeterListComponent {
   itemsPerPage = 2;
 
   ngOnInit() {
-    this.getMeterReadings();
+    this.getMeterReadingsByApartament();
     
   }
   constructor(
@@ -42,19 +42,25 @@ export class WaterMeterListComponent {
     })
   }
 
-  // getMeterReadingsByApartament() {
-  //   this.userService.getLoggedUserId().subscribe(cnp => {
-  //     this.waterMeterService.getMeterReadingsByCNP(cnp).subscribe(data => {
-  //       if(data){
-  //         const apartamentNumber = [...new Set(data.map(reading => reading.apartamentNumber))];
-  //         this.apartaments = apartamentNumber.map(apartament => ({
-  //           apartamentNumber: apartament,
-  //           meterReadings: data.filter(reading => reading.apartamentNumber === apartament)
-  //         }));
-  //       }
-  //     });
-  //   })
-  // }
+  getMeterReadingsByApartament() {
+    this.userService.getLoggedUserId().subscribe(cnp => {
+      this.apartamentService.getAvailableApartamentsByCNP(cnp).subscribe(apartaments => {
+        if(apartaments){
+          this.apartaments = apartaments;
+          console.log(apartaments);
+          const apartamentIds = apartaments.map(apartament => apartament.id);
+          this.waterMeterService.getMeterReadingsByApartamentId(apartamentIds).subscribe(data => {
+            this.meterReadings = data;
+            console.log(data);
+            this.apartaments.forEach((apartament: { meterReadings: any; id: any; }) => {
+              apartament.meterReadings = this.meterReadings.filter((meterReading: { apartamentID: any; }) => meterReading.apartamentID === apartament.id);
+              console.log(apartament.meterReadings);
+            });
+          })
+        }
+      })
+    })
+  }
 
   getPageCount(): number {
     return Math.ceil(this.meterReadings.length / this.itemsPerPage);

@@ -33,6 +33,10 @@ export class WaterMeterService {
     );
   }
 
+  getMeterReadingsByApartamentId(apartamentId: string[]): Observable<any[]>{ 
+    return this.firestore.collection('meterReadings', ref => ref.where('apartamentID', 'in', apartamentId)).valueChanges();
+  }
+
   uploadImageAndGetURL(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const filePath = `meter-images/${new Date().getTime()}_${file.name}`;
