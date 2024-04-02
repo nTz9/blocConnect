@@ -75,11 +75,16 @@ export class WaterMeterListComponent {
   getPageCount(): number {
     return Math.ceil(this.meterReadings.length / this.itemsPerPage);
   }
-  getPaginatedData(): any[] {
+
+  getPaginatedData(apartmentId: number): any[] {
+    const apartment = this.apartaments.find((apartment: { id: number; }) => apartment.id === apartmentId);
+    if (!apartment) return [];
+    
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.meterReadings.slice(startIndex, endIndex);
+    return apartment.meterReadings.slice(startIndex, endIndex);
   }
+  
 
   goToPage(pageNumber: number): void {
     if(pageNumber>= 1 && pageNumber <= this.getPageCount()){

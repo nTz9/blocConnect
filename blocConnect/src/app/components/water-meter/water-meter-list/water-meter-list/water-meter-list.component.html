@@ -1,8 +1,8 @@
 <div class="container">
   <div class="apartment" *ngFor="let apartament of apartaments">
     <div class="expand-header" (click)="toggleDropdown(apartament.id)">
-      <span>Apartamentul nr: {{apartament.id}}</span>
-      <i class="fas fa-chevron-down arrow-icon" [ngClass]="{'expanded': apartament.expanded}"></i>
+      <span>Apartamentul {{apartament.apartamentNumber}}, Scara {{apartament.Scara}}</span>
+      <i class="fas fa-chevron-down arrow-icon" [ngClass]="{'expanded': selectedApartment === apartament.id}"></i>
     </div>
     <div class="apartment-details" [ngClass]="{'expanded': selectedApartment === apartament.id}">
       <h2>Apartament {{ apartament.id }}</h2>
@@ -15,15 +15,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let reading of apartament.meterReadings">
+          <tr *ngFor="let reading of getPaginatedData(apartament.id)">
             <td>{{ reading.readingDate }}</td>
-            <td [ngClass]="{ 'blue-cell': reading.type === 'cold', 'red-cell': reading.type === 'Hot' }">{{ reading.type }}</td>
+            <td [ngClass]="{ 'blue-cell': reading.type === 'cold', 'red-cell': reading.type === 'hot' }">{{ reading.type }}</td>
             <td>{{ reading.readingvalue }}</td>
           </tr>
         </tbody>
       </table>
       <span *ngIf="!apartament.meterReadings || apartament.meterReadings.length === 0">Nu există informații disponibile pentru acest apartament.</span>
-      <div class="button-group">
+      <div *ngIf="apartament.meterReadings && apartament.meterReadings.length > 0" class="button-group">
         <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
         <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === getPageCount()">Next</button>
       </div>
