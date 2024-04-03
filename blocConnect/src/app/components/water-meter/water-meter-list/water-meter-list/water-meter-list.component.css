@@ -1,7 +1,7 @@
 .container{
   width: 100%;
   height: auto;
-  background: #d9d9d9;
+  background: #fff;
   padding: 20px;
 }
 
@@ -19,15 +19,15 @@ td, th {
 
 }
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #fff;
 }
 .blue-cell {
-  background-color: blue;
+  background-color: #1cd5fa;
   color: white;
 }
   
 .red-cell {
-  background-color: red;
+  background-color: rgb(249, 76, 76);
   color: white;
 }
   
@@ -37,7 +37,7 @@ tr:nth-child(even) {
 }
 
 .expand-header {
-  background-color: #f0f0f0;
+  background-color: #fff;
   color: #333;
   padding: 10px;
   border-bottom: 1px solid #ccc;
@@ -76,7 +76,7 @@ tr:nth-child(even) {
 }
   
 .apartment-details th {
-  background-color: #f2f2f2;
+  background-color: #fff;
 }
   
 .apartment-details span {

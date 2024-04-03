@@ -5,11 +5,10 @@
       <i class="fas fa-chevron-down arrow-icon" [ngClass]="{'expanded': selectedApartment === apartament.id}"></i>
     </div>
     <div class="apartment-details" [ngClass]="{'expanded': selectedApartment === apartament.id}">
-      <h2>Apartament {{ apartament.id }}</h2>
       <table *ngIf="apartament.meterReadings && apartament.meterReadings.length > 0">
         <thead>
           <tr>
-            <th>Data</th>
+            <th>Perioada</th>
             <th>Type Water Meter</th>
             <th>Index</th>
           </tr>

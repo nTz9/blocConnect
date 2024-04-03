@@ -1,7 +1,7 @@
 .form-container {
     background-color: #f4f4f4;
     border-radius: 15px;
-    width: auto;
+    width: 100%;
     padding: 20px;
     margin: 10px auto;
     display: flex;
