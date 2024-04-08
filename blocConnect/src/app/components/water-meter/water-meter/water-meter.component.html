@@ -3,24 +3,35 @@
         <div class="img-logo">
           <img src="assets/logo-tree.png" alt="Logo" class="logo">
         </div>
-        <form [formGroup]="waterMeterForm" (ngSubmit)="onSubmit()" class="water-meter-form">
-          <!-- <div class="input-field">
-            <input id="cnp" type="text" formControlName="userCNP" readonly>
-          </div> -->
-          
-          <div class="apartament-section">
-            <label for="apartamentId">Alegeți Apartamentul:</label>
-            <select id="apartamentID" formControlName="apartamentID" class="select-field">
-              <option value="">Selectați un apartament</option>
-              <option *ngFor="let apartament of apartaments" [value]="apartament.id">{{apartament.apartamentNumber}}</option>
-            </select>
+        <h1 class="text-c">ADD WATERMETER</h1>
+        <div class="line-o"></div>
+        <form [formGroup]="waterMeterForm" (ngSubmit)="onSubmit()" class="water-meter-form">   
+          <div class="section-row">
+            <div class="apartament-section">
+              <label for="apartamentId" class="f-18">Alegeți Apartamentul:</label>
+              <select id="apartamentID" formControlName="apartamentID" class="select-field">
+                <option value="">Selectați un apartament</option>
+                <option *ngFor="let apartament of apartaments" [value]="apartament.id">{{apartament.apartamentNumber}}</option>
+              </select>
+            </div>
+            <div class="type-section">
+              <label for="type" class="f-18">Type of Water Meter:</label>
+              <select id="type" formControlName="type" class="select-field">
+                  <option value="">Type of Water Meter</option>
+                  <option value="cold">Cold Water Meter</option>
+                  <option value="hot">Hot Water Meter</option>
+              </select>
+            </div>
+            <div class="value-section">
+              <label for="readingValue" class="f-18">Enter Value</label>
+              <input type="text" formControlName="readingvalue" id="readingValue" class="value-field">
+            </div>
           </div>
-          
+          <div class="line-o"></div>
           <div class="date-section">
-            <label for="readingDate">Data Citirii:</label>
+            <label for="readingDate" class="f-18">Data Citirii:</label>
             <input id="readingDate" type="date" formControlName="readingDate" class="calendar">
           </div>
-          
           <div class="file-section">
             <span class="title">Upload your file</span>
             <p class="paragraph">File should be an image</p>
@@ -29,25 +40,14 @@
               or
               <input type="file" (change)="onFileSelected($event)" formControlName="imageURL" id="file-input">
             </label>
-            
           </div>
-
-          <div class="input-field">
-            <input type="text" formControlName="readingvalue" id="readingValue">
-            <label for="readingValue">Enter Value</label>
-          </div>
-          <div class="input-field">
-            <label for="type">Choose Water Meter Type:</label>
-            <select id="type" formControlName="type" class="select-field">
-                <option value="cold">Cold Water Meter</option>
-                <option value="hot">Hot Water Meter</option>
-            </select>
-        </div>
+          <div class="line-o"></div>
           <div class="input-field">
             <input type="text" formControlName="notes">
             <label for="input-section">Notes</label>
           </div>
-          <button type="submit" [disabled]="!waterMeterForm.valid">Trimite</button>
+          <div class="line-o"></div>
+          <button type="submit" [disabled]="!waterMeterForm.valid" class="add-button">Trimite</button>
         </form>
     </div>
 </div>
