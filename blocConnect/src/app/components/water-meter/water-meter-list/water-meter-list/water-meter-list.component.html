@@ -1,7 +1,7 @@
 <div class="container">
   <div class="apartment" *ngFor="let apartament of apartaments">
     <div class="expand-header" (click)="toggleDropdown(apartament.id)">
-      <span>Apartamentul {{apartament.apartamentNumber}}, Scara {{apartament.Scara}}</span>
+      <span>Bloc {{apartament.blockInfo?.name}}, Apartamentul {{apartament.apartamentNumber}}, Scara {{apartament.Scara}}</span>
       <i class="fas fa-chevron-down arrow-icon" [ngClass]="{'expanded': selectedApartment === apartament.id}"></i>
     </div>
     <div class="apartment-details" [ngClass]="{'expanded': selectedApartment === apartament.id}">

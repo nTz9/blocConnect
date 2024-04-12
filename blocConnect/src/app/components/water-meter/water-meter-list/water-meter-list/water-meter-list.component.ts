@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ApartamentService } from 'src/app/services/apartament.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { BlockService } from 'src/app/services/block.service';
 import { UserService } from 'src/app/services/user.service';
 import { WaterMeterService } from 'src/app/services/water-meter.service';
 
@@ -30,7 +31,8 @@ export class WaterMeterListComponent {
     private firestore: AngularFirestore,
     private userService: UserService,
     private apartamentService: ApartamentService,
-    private waterMeterService: WaterMeterService
+    private waterMeterService: WaterMeterService,
+    private blockService: BlockService
   ) { }
 
 
@@ -55,9 +57,12 @@ export class WaterMeterListComponent {
           this.waterMeterService.getMeterReadingsByApartamentId(apartamentIds).subscribe(data => {
             this.meterReadings = data;
             console.log(data);
-            this.apartaments.forEach((apartament: { meterReadings: any; id: any; }) => {
+            this.apartaments.forEach((apartament: { meterReadings: any; id: any;blockID: string; blockInfo?: any }) => {
               apartament.meterReadings = this.meterReadings.filter((meterReading: { apartamentID: any; }) => meterReading.apartamentID === apartament.id);
-              console.log(apartament.meterReadings);
+              this.blockService.getBlockInfo(apartament.blockID).subscribe(blockInfo => {
+                apartament.blockInfo = blockInfo;
+                console.log(apartament.blockInfo);
+              });
             });
           })
         }
