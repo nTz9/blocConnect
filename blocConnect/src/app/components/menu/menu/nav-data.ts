@@ -36,6 +36,11 @@ export const navbarData: INavbarData[]  = [
                 label: 'Water Meter List',
             }
         ]
+    },
+    {
+        routeLink : '/announcement',
+        icon: 'fa fa-bullhorn',
+        label: 'Announcement',
     }
         
 ];

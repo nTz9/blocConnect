@@ -9,6 +9,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance/maint
 import { UserProfileComponent } from './components/user-profile/user-profile/user-profile.component';
 import { WaterMeterComponent } from './components/water-meter/water-meter/water-meter.component';
 import { WaterMeterListComponent } from './components/water-meter/water-meter-list/water-meter-list/water-meter-list.component';
+import { AnnouncementComponent } from './components/announcement/announcement/announcement.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,10 @@ const routes: Routes = [
 {
   path: "water-meter-list",
   component: WaterMeterListComponent
+},
+{
+  path: "announcement",
+  component: AnnouncementComponent
 }
 
 ];

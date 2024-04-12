@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./announcement.component.css']
 })
 export class AnnouncementComponent {
+  
+  constructor() { }
 
+  ngOnInit(): void {
+  }
 }
