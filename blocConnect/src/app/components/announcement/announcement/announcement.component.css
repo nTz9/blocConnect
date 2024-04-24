@@ -45,3 +45,66 @@
     font-size: small;
     margin-top: 5px;
   }
+
+  /* Search Bar */
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .search-container input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
+
+  /* Filter By Category */
+.filter-container {
+    width: 80%;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    margin: auto;
+    margin-bottom: 50px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Stiluri pentru selectul de categorii */
+  .filter-container select {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  /* Stiluri pentru butonul de filtrare, dacă este necesar */
+  .filter-container button {
+    padding: 8px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  
+  .filter-container button:hover {
+    background-color: #0056b3;
+  }
+  /* Category Label */
+  .filter-container label {
+    margin-right: 10px; /* Adaugă un spațiu între label și select */
+    font-size: 18px; /* Asigură-te că textul este de dimensiune adecvată */
+    color: #333; /* O culoare ușor de citit */
+    font-weight: bold; /* Face textul mai lizibil și evident */
+  }

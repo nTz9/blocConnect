@@ -8,6 +8,16 @@ import { BlockService } from 'src/app/services/block.service';
 import { UserService } from 'src/app/services/user.service';
 import { WaterMeterService } from 'src/app/services/water-meter.service';
 
+interface Announcement {
+  title: string;
+  category: string;
+  message: string;
+  startDate: Date;
+  endDate: Date;
+  //isVisible: boolean;
+}
+
+
 @Component({
   selector: 'app-announcement',
   templateUrl: './announcement.component.html',
@@ -27,9 +37,14 @@ export class AnnouncementComponent implements OnInit{
 
   ngOnInit(): void {
     this.getAnnouncement();
+    this.getCategories();
   }
 
-  announcements: any = [];
+  announcements: Announcement[] = [];
+  filteredAnnouncements: Announcement[] = [];
+  categories: string[] = [];
+  selectedCategory = '';
+  searchText = '';
   
 
   user$ = this.authService.getCurrentUser();
@@ -40,11 +55,38 @@ export class AnnouncementComponent implements OnInit{
         console.log(blockIds);
         this.announcementService.getAnnouncementsForBlocks(blockIds).subscribe(announcement => {
           this.announcements = announcement;
+          this.filteredAnnouncements = announcement;
           console.log(this.announcements);
         })
       })
     })
   }
+
+  filterAnnouncements() {
+    if (!this.searchText) {
+      this.filteredAnnouncements = this.announcements;
+    } else {
+      this.filteredAnnouncements = this.announcements.filter(announcement =>
+        announcement.title.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    }
+  }
+  getCategories() {
+    this.announcementService.getCategories().subscribe(categories => {
+      this.categories = categories;
+    });
+  }
+
+  filterByCategory() {
+    if (!this.selectedCategory) {
+      this.filteredAnnouncements = this.announcements;
+    } else {
+      this.filteredAnnouncements = this.announcements.filter(announcement =>
+        announcement.category === this.selectedCategory
+      );
+    }
+  }
+
 
   // getAnnouncement() {
   //   this.userService.getLoggedUserId().pipe(

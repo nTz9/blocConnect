@@ -1,9 +1,21 @@
+<div class="filter-container">
+  <label for="categorySelect">Category:</label>
+  <select id="categorySelect" [(ngModel)]="selectedCategory" (change)="filterByCategory()">
+    <option value="">All Categories</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+</div>
+
 <div class="container" *ngIf="announcements.length > 0; else noAnnouncements">
   <!-- <div class="announcement-actions">
     <button (click)="addAnnouncement()">Add Announcement</button>
     <button (click)="manageCategories()">Categories</button>
   </div> -->
-<h2>ANNOUNCEMENTS</h2>
+  <div class="search-container">
+    <h2>Announcements</h2>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search announcements..." (input)="filterAnnouncements()">
+  </div>
+  
   <table class="announcement-table">
     <thead>
       <tr>
@@ -15,9 +27,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let announcement of announcements">
+      <tr *ngFor="let announcement of filteredAnnouncements">
         <td>
-          {{ announcement.titlu }}
+          {{ announcement.title }}
           <span class="visible-indicator">Visible</span>
         </td>
         <td>{{ announcement.category }}</td>
