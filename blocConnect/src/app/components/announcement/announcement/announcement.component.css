@@ -1,0 +1,47 @@
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+  }
+  .header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  .announcement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .announcement-table th,
+  .announcement-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .announcement-table th {
+    background-color: #555;
+    color: white;
+  }
+  .announcement-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  .announcement-actions button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .announcement-actions button:hover {
+    opacity: 0.8;
+  }
+
+  .visible-indicator {
+    display: block;
+    color: green;
+    font-size: small;
+    margin-top: 5px;
+  }

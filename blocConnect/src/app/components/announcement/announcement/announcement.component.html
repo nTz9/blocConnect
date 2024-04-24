@@ -1,11 +1,39 @@
-<div *ngIf="announcements.length > 0">
-    <h2>Anunțuri pentru Blocurile Tale</h2>
-    <div *ngFor="let announcement of announcements">
-      <h3>{{ announcement.titlu }}</h3>
-      <p>{{ announcement.message }}</p>
-      <p>Postat: {{ announcement.data | date: 'longDate' }}</p>
-    </div>
+<div class="container" *ngIf="announcements.length > 0; else noAnnouncements">
+  <!-- <div class="announcement-actions">
+    <button (click)="addAnnouncement()">Add Announcement</button>
+    <button (click)="manageCategories()">Categories</button>
+  </div> -->
+<h2>ANNOUNCEMENTS</h2>
+  <table class="announcement-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Message</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let announcement of announcements">
+        <td>
+          {{ announcement.titlu }}
+          <span class="visible-indicator">Visible</span>
+        </td>
+        <td>{{ announcement.category }}</td>
+        <td>{{ announcement.message }}</td>
+        <td>{{ announcement.startDate | date: 'longDate' }}</td>
+        <td>{{ announcement.endDate | date: 'longDate' }}</td>
+        <!-- <td>
+          <button (click)="viewAnnouncement(announcement)">View</button>
+          <button (click)="editAnnouncement(announcement)">Edit</button>
+          <button (click)="deleteAnnouncement(announcement)">Delete</button>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
 </div>
-<div *ngIf="announcements.length === 0">
-    <p>Nu există anunțuri disponibile.</p>
-</div>
+
+<ng-template #noAnnouncements>
+  <p>No announcements available.</p>
+</ng-template>
