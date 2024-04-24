@@ -1,1 +1,11 @@
-<p>announcement works!</p>
+<div *ngIf="announcements.length > 0">
+    <h2>Anunțuri pentru Blocurile Tale</h2>
+    <div *ngFor="let announcement of announcements">
+      <h3>{{ announcement.titlu }}</h3>
+      <p>{{ announcement.message }}</p>
+      <p>Postat: {{ announcement.data | date: 'longDate' }}</p>
+    </div>
+</div>
+<div *ngIf="announcements.length === 0">
+    <p>Nu există anunțuri disponibile.</p>
+</div>
