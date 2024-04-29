@@ -1,0 +1,104 @@
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+  }
+  .header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  .bills-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .bills-table th,
+  .bills-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .bills-table th {
+    background-color: #555;
+    color: white;
+  }
+  .bills-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  .announcement-actions button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .announcement-actions button:hover {
+    opacity: 0.8;
+  }
+
+
+  /* Search Bar */
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .search-container input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
+
+  /* Filter By Category */
+.filter-container {
+    width: 80%;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    margin: auto;
+    margin-bottom: 50px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Stiluri pentru selectul de categorii */
+  .filter-container select {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  /* Stiluri pentru butonul de filtrare, dacă este necesar */
+  .filter-container button {
+    padding: 8px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  
+  .filter-container button:hover {
+    background-color: #0056b3;
+  }
+  /* Category Label */
+  .filter-container label {
+    margin-right: 10px; /* Adaugă un spațiu între label și select */
+    font-size: 18px; /* Asigură-te că textul este de dimensiune adecvată */
+    color: #333; /* O culoare ușor de citit */
+    font-weight: bold; /* Face textul mai lizibil și evident */
+  }

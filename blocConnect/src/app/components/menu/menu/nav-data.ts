@@ -11,15 +11,15 @@ export const navbarData: INavbarData[]  = [
     {
 
         routeLink : '/home',
-        icon: 'fal fa-home',
+        icon: 'fa fa-home',
         label: 'Home',
     
     },
     {
 
         routeLink : '/maintenance',
-        icon: 'maintenance',
-        label: 'maintenance',
+        icon: 'fa fa-pencil',
+        label: 'Maintenance',
         
     },
     {
