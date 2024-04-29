@@ -49,7 +49,9 @@ export class MaintenanceComponent implements OnInit{
   bills: Bills[] = [];
   filteredBills: Bills[] = [];
   months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  years: string[] = ["2024", "2025", "2026", "2027", "2028"];
   selectedMonth = '';
+  selectedYear='';
   searchText = '';
 
 
@@ -60,7 +62,7 @@ export class MaintenanceComponent implements OnInit{
         console.log(blockIds);
         this.maintenanceService.getMonthlyBillsForBlock(blockIds).subscribe(monthBills => {
           for (const bill of monthBills) {
-            this.blockService.getBlockInfo(bill.blockID).subscribe((block: any) => {
+            this.blockService.getBlockInfo(bill.blockID).subscribe((block: any) => { //la block:any aveam eroare la tipul ANY al blocului, de asta am pus aici asta
               bill.block_name = block.name; // Adăugați numele blocului în factură
              // this.bills.push(bill); // Adăugați factura la listă
             });
@@ -96,8 +98,15 @@ export class MaintenanceComponent implements OnInit{
     }
   }
 
-
-
+  filterByYear() {
+    if (!this.selectedYear) {
+      this.filteredBills = this.bills;
+    } else {
+      this.filteredBills = this.bills.filter(bill =>
+        bill.year === this.selectedYear
+      );
+    }
+  }
 }
 
 

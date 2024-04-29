@@ -4,6 +4,11 @@
       <option value="">Month</option>
       <option *ngFor="let month of months" [value]="month">{{ month }}</option>
     </select>
+    <label for="yearSelect">Year:</label>
+    <select id="yearSelect" [(ngModel)]="selectedYear" (change)="filterByYear()">
+        <option value="">Year</option>
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
   </div>
   
   <div class="container" *ngIf="bills.length > 0; else noBills">
