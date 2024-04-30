@@ -21,7 +21,6 @@ interface Bills {
   year: string;
   block_name: string;
   apartament_name: string;
-  //isVisible: boolean;
 }
 
 
@@ -77,6 +76,13 @@ export class MaintenanceComponent implements OnInit{
         })
       })
     })
+  }
+
+  calculateTotal(bill: Bills): number {
+    const cleaningFee = parseFloat(bill.cleaning_fee);
+    const waterPrice = parseFloat(bill.total_water_price);
+    const otherExpenses = parseFloat(bill.other_expenses);
+    return cleaningFee + waterPrice + otherExpenses;
   }
 
   filterBills() {

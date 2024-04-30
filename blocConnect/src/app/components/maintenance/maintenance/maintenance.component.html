@@ -49,6 +49,7 @@
             <td>{{ bill.total_water_price }}</td>
             <td>{{ bill.cleaning_fee }}</td>
             <td>{{ bill.other_expenses }}</td>
+            <td>{{ calculateTotal(bill) }}</td>
           <!-- <td>
             <button (click)="viewAnnouncement(announcement)">View</button>
             <button (click)="editAnnouncement(announcement)">Edit</button>
