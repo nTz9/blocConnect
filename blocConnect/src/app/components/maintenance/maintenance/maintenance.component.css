@@ -103,3 +103,24 @@
     color: #333; /* O culoare ușor de citit */
     font-weight: bold; /* Face textul mai lizibil și evident */
   }
+
+  /* Total Payments Div */
+  /* CSS pentru secțiunea total-payments */
+.total-payments {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-payments span {
+  margin-right: 20px;
+}
+
+.total-payments span:last-child {
+  margin-right: 0;
+}

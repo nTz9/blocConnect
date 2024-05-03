@@ -12,10 +12,10 @@ export class MaintenanceService {
   ) { }
 
   getMonthlyBillsForBlock(blockIds: string[]): Observable<any[]> {
-    console.log("blockIds received:", blockIds);
+   // console.log("blockIds received:", blockIds);
     return from(blockIds).pipe(
       mergeMap(blockId => {
-        console.log("Querying for blockId:", blockId);
+   //     console.log("Querying for blockId:", blockId);
         return this.firestore.collection('monthlyBills', ref => ref.where('blockID', '==', blockId)).valueChanges();
       }),
       //mergeAll(), // Combinați toate răspunsurile într-un singur flux de date
