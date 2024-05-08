@@ -179,22 +179,48 @@ export class MaintenanceComponent implements OnInit{
     }
   }
   filterByMonth() {
-    if (!this.selectedMonth) {
-      this.filteredBills = this.bills;
-    } else {
+    if ((!this.selectedMonth || !this.selectedBlock) && this.selectedYear) {
+      // Dacă nu este selectată o lună sau un bloc, dar este selectat un an
+      // Afișăm toate facturile pentru blocul selectat, fără a lua în considerare luna
       this.filteredBills = this.bills.filter(bill =>
-        bill.month === this.selectedMonth
+        bill.blockID === this.selectedBlock && bill.year === this.selectedYear
       );
+    } else if (this.selectedMonth && this.selectedBlock) {
+      // Dacă este selectată o lună și un bloc
+      // Aplicăm filtrarea pentru lună și bloc
+      this.filteredBills = this.bills.filter(bill =>
+        bill.month === this.selectedMonth && bill.blockID === this.selectedBlock
+      );
+    } else if (!this.selectedMonth && !this.selectedYear && this.selectedBlock) {
+      // Dacă se selectează valoarea implicită "Month" și nu este selectat niciun an,
+      // dar este selectat un bloc, atunci afișăm toate facturile pentru blocul respectiv
+      this.filteredBills = this.bills.filter(bill => bill.blockID === this.selectedBlock);
+    } else {
+      // În celelalte cazuri, afișăm toate facturile
+      this.filteredBills = this.bills;
     }
   }
-
+  
   filterByYear() {
-    if (!this.selectedYear) {
-      this.filteredBills = this.bills;
-    } else {
+    if ((!this.selectedYear || !this.selectedBlock) && this.selectedMonth) {
+      // Dacă nu este selectat un an sau un bloc, dar este selectată o lună
+      // Afișăm toate facturile pentru blocul selectat, fără a lua în considerare anul
       this.filteredBills = this.bills.filter(bill =>
-        bill.year === this.selectedYear
+        bill.blockID === this.selectedBlock && bill.month === this.selectedMonth
       );
+    } else if (this.selectedYear && this.selectedBlock) {
+      // Dacă este selectat un an și un bloc
+      // Aplicăm filtrarea pentru an și bloc
+      this.filteredBills = this.bills.filter(bill =>
+        bill.year === this.selectedYear && bill.blockID === this.selectedBlock
+      );
+    } else if (!this.selectedYear && !this.selectedMonth && this.selectedBlock) {
+      // Dacă se selectează valoarea implicită "Year" și nu este selectată nicio lună,
+      // dar este selectat un bloc, atunci afișăm toate facturile pentru blocul respectiv
+      this.filteredBills = this.bills.filter(bill => bill.blockID === this.selectedBlock);
+    } else {
+      // În celelalte cazuri, afișăm toate facturile
+      this.filteredBills = this.bills;
     }
   }
 
