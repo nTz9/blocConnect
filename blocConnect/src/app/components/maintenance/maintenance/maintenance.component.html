@@ -10,56 +10,64 @@
       <option *ngFor="let year of years" [value]="year">{{ year }}</option>
     </select>
 </div>
-
-<div class="block-container">
-  <div *ngFor="let block of blocks">
-    <button (click)="loadBillsForBlock(block)">{{ block }}</button>
-  </div>
-</div>
-
 <div class="container" *ngIf="selectedBlock">
   <div class="search-container">
     <h2>Bills</h2>
     <input type="text" [(ngModel)]="searchText" placeholder="Search bills..." (input)="filterBills()">
   </div>
-  
-  <table class="bills-table">
-    <thead>
-      <tr>
-          <th>Apartament</th>
-          <th>Bloc</th>
-          <th>Lună</th>
-          <th>An</th>
-          <th>Index Vechi</th>
-          <th>Index Nou</th>
-          <th>Consum Apă</th>
-          <th>Preț Apă</th>
-          <th>Curățenie Scara</th>
-          <th>Alte Cheltuieli</th>
-          <th>Total Plată</th>
-        </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let bill of filteredBills">
-          <td>{{ bill.apartament_name }}</td>
-          <td>{{ bill.block_name }}</td>
-          <td>{{ bill.month }}</td>
-          <td>{{ bill.year }}</td>
-          <td>{{ bill.old_meter_index }}</td>
-          <td>{{ bill.new_meter_index }}</td>
-          <td>{{ bill.water_consumption }}</td>
-          <td>{{ bill.total_water_price }}</td>
-          <td>{{ bill.cleaning_fee }}</td>
-          <td>{{ bill.other_expenses }}</td>
-          <td>{{ calculateTotal(bill) }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="total-payments">
-    <span>Total Payments: {{ totalPayment }} lei</span>
-    <span>Due Date: {{ dueDate | date:'mediumDate' }}</span>
+</div>
+
+<div class="container">
+  <div *ngFor="let block of blocks; let i = index">
+    <div class="block-item" *ngIf="selectedBlockIndex === i">
+      <table class="bills-table">
+        <thead>
+          <tr>
+              <th>Apartament</th>
+              <th>Bloc</th>
+              <th>Lună</th>
+              <th>An</th>
+              <th>Index Vechi</th>
+              <th>Index Nou</th>
+              <th>Consum Apă</th>
+              <th>Preț Apă</th>
+              <th>Curățenie Scara</th>
+              <th>Alte Cheltuieli</th>
+              <th>Total Plată</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bill of filteredBills">
+              <td>{{ bill.apartament_name }}</td>
+              <td>{{ bill.block_name }}</td>
+              <td>{{ bill.month }}</td>
+              <td>{{ bill.year }}</td>
+              <td>{{ bill.old_meter_index }}</td>
+              <td>{{ bill.new_meter_index }}</td>
+              <td>{{ bill.water_consumption }}</td>
+              <td>{{ bill.total_water_price }}</td>
+              <td>{{ bill.cleaning_fee }}</td>
+              <td>{{ bill.other_expenses }}</td>
+              <td>{{ calculateTotal(bill) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="total-payments">
+        <span>Total Payments: {{ totalPayment }} lei</span>
+        <span>Due Date: {{ dueDate | date:'mediumDate' }}</span>
+      </div>
+      <div class="navigation-buttons">
+        <button (click)="previousBlock()" class="navigate-button"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        <span class="navigate-button">{{ selectedBlockIndex + 1 }}</span>
+        <button (click)="nextBlock()" class="navigate-button"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+      </div>      
+    </div>
   </div>
 </div>
+
+
+
+
 
 <ng-template #noBills>
   <p>No bills available.</p>

@@ -73,6 +73,8 @@ export class MaintenanceComponent implements OnInit{
 
   blocks: string[] = [];
   selectedBlock: string | null = null;
+  selectedBlockDetails: any | undefined;
+  selectedBlockIndex: number = 0;
 
   // getMonthBills() {
   //   this.userService.getLoggedUserId().subscribe(cnp => {
@@ -143,15 +145,30 @@ export class MaintenanceComponent implements OnInit{
           });
           // După ce a fost parcursă lista cu facturi, se pot aplica filtrările și alte operațiuni
           this.filteredBills = this.bills;
+          if(this.blocks.length > 0) {
+            this.loadBillsForBlock(this.blocks[0]);
+          }
           console.log(this.bills);
         });
       });
     });
   }
-  
-  
-  
 
+  previousBlock() {
+    if (this.selectedBlockIndex > 0) {
+      this.selectedBlockIndex--;
+      this.loadBillsForBlock(this.blocks[this.selectedBlockIndex]);
+    }
+  }
+
+  // Funcție pentru navigarea la blocul următor
+  nextBlock() {
+    if (this.selectedBlockIndex < this.blocks.length - 1) {
+      this.selectedBlockIndex++;
+      this.loadBillsForBlock(this.blocks[this.selectedBlockIndex]);
+    }
+  }
+  
   calculateTotal(bill: Bills): number {
     const cleaningFee = parseFloat(bill.cleaning_fee);
     const waterPrice = parseFloat(bill.total_water_price);
@@ -234,11 +251,14 @@ export class MaintenanceComponent implements OnInit{
 
   loadBillsForBlock(blockId: string) {
     this.selectedBlock = blockId;
-    console.log("Selected block:", blockId);
-    console.log("All bills:", this.bills);
 
     // Filtrăm facturile pentru blocul selectat
     this.filteredBills = this.bills.filter(bill => bill.blockID === blockId);
+
+    // this.blockService.getBlockInfo(blockId).subscribe((blockDetails) => {
+    //   this.selectedBlockDetails = blockDetails;
+    //   console.log("Selected block details:", blockDetails);
+    // });
 
 //    Iterăm prin facturile filtrate și setăm numele blocului și al apartamentului
     this.filteredBills.forEach(bill => {
@@ -250,7 +270,7 @@ export class MaintenanceComponent implements OnInit{
       });
     });
 
-    console.log("Filtered bills:", this.filteredBills);
+   // console.log("Filtered bills:", this.filteredBills);
     this.calculateTotalPayments();
     this.calculateDueDate();
   }
