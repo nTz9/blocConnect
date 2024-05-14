@@ -59,7 +59,31 @@ export class UserService {
       map(user => user ? user.uid : ''),
     );
   }
-  verifyIsAdmin(uid: any) {
-    
+  getRole(uid: any): Observable<string>{
+    return new Observable<string>(observer => {
+      this.firestore.collection('users').doc(uid).get().subscribe(user => {
+        const userData = user.data() as { role: string};
+        if (user.exists) {
+          this.role = userData?.role;
+          observer.next(this.role); // Emite valoarea rolului
+          observer.complete();
+        } else {
+          observer.error('Utilizatorul nu a fost găsit');
+        }
+      });
+    });
   }
+  getLoggedUserRole() : Observable<string>{
+    return this.user$.pipe(
+      tap(user => {
+        const uid = user?.uid;
+        this.userId = uid;
+      }),
+      switchMap(user => this.getRole(user?.uid)),
+      tap(role => {
+        console.log(role); // Afișează valoarea CNP
+      }),
+    );
+  }
+  
 }

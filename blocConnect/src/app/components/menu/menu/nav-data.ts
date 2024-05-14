@@ -1,6 +1,6 @@
 import { INavbarData } from "./helper";
 
-export const navbarData: INavbarData[]  = [
+export const residentNavbarData: INavbarData[]  = [
     {
 
         routeLink : '/user-profile',
@@ -36,6 +36,29 @@ export const navbarData: INavbarData[]  = [
                 label: 'Water Meter List',
             }
         ]
+    },
+    {
+        routeLink : '/announcement',
+        icon: 'fa fa-bullhorn',
+        label: 'Announcement',
+    }
+        
+];
+
+export const adminNavbarData: INavbarData[]  = [
+    {
+
+        routeLink : '/user-profile',
+        icon: 'fa fa-user',
+        label: 'User Profile',
+        
+    },
+    {
+
+        routeLink : '/maintenance',
+        icon: 'fa fa-pencil',
+        label: 'Maintenance',
+        
     },
     {
         routeLink : '/announcement',

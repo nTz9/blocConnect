@@ -5,7 +5,7 @@
       <i class="fas fa-chevron-down arrow-icon" [ngClass]="{'expanded': selectedApartment === apartament.id}"></i>
     </div>
     <div class="apartment-details" [ngClass]="{'expanded': selectedApartment === apartament.id}">
-      <table *ngIf="apartament.meterReadings && apartament.meterReadings.length > 0">
+      <table *ngIf="apartament.meterReadings && apartament.meterReadings.length > 0" class="w-table">
         <thead>
           <tr>
             <th>Perioada</th>

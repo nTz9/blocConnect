@@ -1,6 +1,7 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { navbarData } from './nav-data';
+import { residentNavbarData, adminNavbarData } from './nav-data';
 import { INavbarData } from './helper';
+import { UserService } from 'src/app/services/user.service';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -22,7 +23,7 @@ export class MenuComponent implements OnInit{
   screenWidth = 0;
 
   collapsed = false;
-  navData = navbarData;
+  navData : INavbarData[] = [];
   multiple: boolean = false;
 
   @HostListener('window:resize', ['$event'])
@@ -34,9 +35,13 @@ export class MenuComponent implements OnInit{
     }
   }
 
+  constructor(private userService: UserService) {
+
+  }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
+    this.loadMenu();
   }
 
   toggleCollapse(): void {
@@ -58,6 +63,18 @@ export class MenuComponent implements OnInit{
       }
     }
     item.expanded = !item.expanded;
+  }
+
+  loadMenu(): void {
+    this.userService.getLoggedUserRole().subscribe(role => {
+      if(role === 'resident') {
+        this.navData = residentNavbarData;
+      } else if (role === 'admin') {
+        this.navData = adminNavbarData;
+      } else {
+        console.error('Rolul utilizatorului nu este valid');
+      }
+    });
   }
 
 
