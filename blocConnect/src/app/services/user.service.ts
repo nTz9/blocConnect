@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, map, switchMap, tap } from 'rxjs';
+import { deleteUser } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -86,4 +87,43 @@ export class UserService {
     );
   }
   
+
+
+  // Admin Panel
+
+  getUsers(): Observable<any[]> {
+    return this.firestore.collection('users').valueChanges();
+  }
+
+  // deleteUser(userID: string): Promise<void> {
+  //   return this.firestore.collection('users').doc(userID).delete();
+  // }
+
+  deleteUser(cnp: string): Promise<void> {
+    return this.firestore.collection('users', ref => ref.where('cnp', '==', cnp)).get().toPromise().then(querySnapshot => {
+      if (querySnapshot) {
+        querySnapshot.forEach(doc => {
+          doc.ref.delete();
+        });
+      } else {
+        console.error('Nu s-au găsit documente pentru CNP-ul dat:', cnp);
+      }
+    }).catch(error => {
+      console.error('Eroare la ștergerea utilizatorului:', error);
+    });
+  }
+
+  updateUser(user: any): Promise<void> {
+    return this.firestore.collection('users', ref => ref.where('cnp', '==', user.cnp)).get().toPromise().then(querySnapshot => {
+      if (querySnapshot) {
+        querySnapshot.forEach(doc => {
+          doc.ref.update(user);
+        });
+      } else {
+        throw new Error('Utilizatorul nu a fost găsit în baza de date.');
+      }
+    });
+  }
+
+
 }

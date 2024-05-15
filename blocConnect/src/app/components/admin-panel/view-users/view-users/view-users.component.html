@@ -1,0 +1,74 @@
+<div class="container-s">
+  <div class="search-container">
+    <h2>All Users</h2>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search bills..." (input)="filterUsers()">
+  </div>
+</div>
+<div class="container">
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>CNP</th>
+        <th>Phone</th>
+        <th>Role</th>
+        <th>Acțiuni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.cnp }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <div class="actions-menu">
+            <button class="actions-menu-icon" (click)="toggleActionsMenu($event)"><i class="fa fa-bars" aria-hidden="true"></i></button>
+            <div class="actions-dropdown">
+              <button class="action-item color-b" (click)="openUpdateModal(user)">Edit <i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button class="action-item delete-button" (click)="deleteUser(user.cnp)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+  
+<div *ngIf="selectedUser" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="selectedUser = null">&times;</span>
+    <h2>Actualizare utilizator</h2>
+    <form (submit)="saveUser()">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" [(ngModel)]="selectedUser.firstName" name="firstName">
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" [(ngModel)]="selectedUser.lastName" name="lastName">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="selectedUser.email" name="email">
+
+      <label for="cnp">CNP:</label>
+      <input type="text" id="cnp" [(ngModel)]="selectedUser.cnp" name="cnp">
+
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" [(ngModel)]="selectedUser.phone" name="phone">
+
+      <label for="role">Role:</label>
+      <select id="role" [(ngModel)]="selectedUser.role" name="role">
+        <option value="admin">Admin</option>
+        <option value="resident">Resident</option>
+      </select>
+
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>

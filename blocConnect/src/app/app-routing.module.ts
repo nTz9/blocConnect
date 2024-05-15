@@ -10,41 +10,46 @@ import { UserProfileComponent } from './components/user-profile/user-profile/use
 import { WaterMeterComponent } from './components/water-meter/water-meter/water-meter.component';
 import { WaterMeterListComponent } from './components/water-meter/water-meter-list/water-meter-list/water-meter-list.component';
 import { AnnouncementComponent } from './components/announcement/announcement/announcement.component';
+import { ViewUsersComponent } from './components/admin-panel/view-users/view-users/view-users.component';
 
 
 const routes: Routes = [
-{
-  path: 'login',
-  component: LoginComponent
-},
-{
-  path: "register",
-  component: RegisterComponent
-},
-{
-  path: "home",
-  component: HomeComponent
-},
-{
-  path: "maintenance",
-  component: MaintenanceComponent
-},
-{
-  path: "user-profile",
-  component: UserProfileComponent
-},
-{
-  path: "water-meter",
-  component: WaterMeterComponent
-},
-{
-  path: "water-meter-list",
-  component: WaterMeterListComponent
-},
-{
-  path: "announcement",
-  component: AnnouncementComponent
-}
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: "register",
+    component: RegisterComponent
+  },
+  {
+    path: "home",
+    component: HomeComponent
+  },
+  {
+    path: "maintenance",
+    component: MaintenanceComponent
+  },
+  {
+    path: "user-profile",
+    component: UserProfileComponent
+  },
+  {
+    path: "water-meter",
+    component: WaterMeterComponent
+  },
+  {
+    path: "water-meter-list",
+    component: WaterMeterListComponent
+  },
+  {
+    path: "announcement",
+    component: AnnouncementComponent
+  },
+  {
+    path: "view-users",
+    component: ViewUsersComponent
+  }
 
 ];
 

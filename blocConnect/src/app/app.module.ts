@@ -26,6 +26,7 @@ import { WaterMeterComponent } from './components/water-meter/water-meter/water-
 import { SublevelMenuComponent } from './components/menu/sublevel-menu/sublevel-menu/sublevel-menu.component';
 import { WaterMeterListComponent } from './components/water-meter/water-meter-list/water-meter-list/water-meter-list.component';
 import { AnnouncementComponent } from './components/announcement/announcement/announcement.component';
+import { ViewUsersComponent } from './components/admin-panel/view-users/view-users/view-users.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AnnouncementComponent } from './components/announcement/announcement/an
     SublevelMenuComponent,
     WaterMeterListComponent,
     AnnouncementComponent,
+    ViewUsersComponent,
   ],
   imports: [
     BrowserModule,

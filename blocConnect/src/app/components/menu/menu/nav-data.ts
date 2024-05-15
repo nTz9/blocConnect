@@ -54,6 +54,11 @@ export const adminNavbarData: INavbarData[]  = [
         
     },
     {
+        routeLink : '/view-users',
+        icon: 'fa fa-users',
+        label: 'View Users',
+    },
+    {
 
         routeLink : '/maintenance',
         icon: 'fa fa-pencil',
