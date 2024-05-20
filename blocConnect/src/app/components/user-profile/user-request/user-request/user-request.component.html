@@ -31,7 +31,7 @@
     <div class="detail">
       Status: {{request.status}}
     </div>
-    <button (click)="cancelRequest(request.id)" class="cancel-button">Anulează Request</button>
+    <button (click)="cancelRequest(request.id)" [disabled]="request.status !== 'pending'" class="cancel-button">Anulează Request</button>
   </div>
   <div class="pagination">
     <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>

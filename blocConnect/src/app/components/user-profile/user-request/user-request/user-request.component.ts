@@ -4,6 +4,7 @@ import { ApartamentService } from 'src/app/services/apartament.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { RequestsService } from 'src/app/services/requests.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class UserRequestComponent {
   userUID : any = "";
   
   selectedApartament: any = "";
+  selectedBlockId: string = "";
   apartaments: any = [];
 
   apartamentInfo: any = [];
@@ -39,18 +41,23 @@ export class UserRequestComponent {
      // console.log(this.userCNP);
       this.apartamentService.getAvailableApartamentsByCNP(this.userCNP).subscribe(apps => {
         this.apss = apps;
-        console.log(this.apss);
+        // console.log(this.apss);
       });
     });
   }
   sendRequest() {
     this.userService.getLoggedUserId().subscribe(cnp => {
-      this.apartamentService.sendRequestForApartament(cnp,this.selectedApartament);
+      const selectedApartment = this.apartaments.find((ap:any )=> ap.id === this.selectedApartament);
+      if (selectedApartment) {
+        this.selectedBlockId = selectedApartment.blockID;
+        // console.log('Selected block ID: ', this.selectedBlockId);
+        this.requestsService.sendRequestForApartament(cnp, this.selectedApartament, this.selectedBlockId);
+      }
     });
   }
   getRequests() {
     this.userService.getLoggedUserId().subscribe(cnp => {
-      this.apartamentService.getUserRequestByCNP(cnp).subscribe(requests => {
+      this.requestsService.getUserRequestByCNP(cnp).subscribe(requests => {
         if (requests && requests.length > 0) {
           this.requestsApartaments = requests; // Salvăm cererile în starea componentei
           this.totalPages = Math.ceil(requests.length / this.requestsPerPage);
@@ -66,7 +73,7 @@ export class UserRequestComponent {
                   apartamentInfo: apartamentDetails
                 };
   
-                console.log('Apartament info: ', apartamentDetails);
+                // console.log('Apartament info: ', apartamentDetails);
                 // Dacă este ultimul request, actualizăm afișarea
                 if (index === requests.length - 1) {
                   this.changePage(this.currentPage); // Re-afișăm pagina curentă pentru a reflecta noile date
@@ -102,7 +109,7 @@ export class UserRequestComponent {
 
 
   cancelRequest(requestId: string) {
-    this.apartamentService.deleteRequest(requestId).subscribe(() => {
+    this.requestsService.deleteRequest(requestId).subscribe(() => {
       console.log('Request deleted');
       this.getRequests();
     });
@@ -122,6 +129,7 @@ export class UserRequestComponent {
     private firestore: AngularFirestore,
     private userService: UserService,
     private apartamentService: ApartamentService,
+    private requestsService: RequestsService
   ) { }
 
 }

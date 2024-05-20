@@ -1,0 +1,30 @@
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    height: 80%; 
+  }
+  .header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  .requests-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .requests-table th,
+  .requests-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .requests-table th {
+    background-color: #555;
+    color: white;
+  }
+  .requests-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }

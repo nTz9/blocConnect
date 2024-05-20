@@ -26,18 +26,7 @@ export class ApartamentService {
     )
     );
   }
-  getUserRequestByCNP(cnp: string): Observable<any[]>{
-    return this.firestore.collection('apartamentRequests', ref => 
-    ref.where('cnp', '==', cnp))
-    .snapshotChanges()
-    .pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as any;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
-  }
+
 
   async deleteProperty(documentId: string, cnpToRemove: string): Promise<void> {
     const apartamentRef = this.firestore.collection('apartaments').doc(documentId);
@@ -69,9 +58,7 @@ export class ApartamentService {
   
 
   // conversie de la promisiune la observable
-  deleteRequest(requestId: string): Observable<any> {
-    return from(this.firestore.collection('apartamentRequests').doc(requestId).delete());
-  }
+
 
   
   // getRequestsByCNP(cnp: string): Observable<any[]>{
@@ -83,17 +70,7 @@ export class ApartamentService {
     return this.firestore.doc(`apartaments/${apartamentId}`).valueChanges() as Observable<any[]>;
   }
 ////
-sendRequestForApartament(cnp: string, apartamentId: string): void{
-  if(apartamentId) {
-    const request = {
-      cnp: cnp,
-      apartamentId: apartamentId,
-      status: 'pending'
-    };
-    console.log(request);
-    this.firestore.collection('apartamentRequests').add(request);  
-  }
-}
+
 
   getAvailableApartaments(): Observable<any[]> {
     return this.firestore.collection('apartaments').valueChanges({ idField: 'id'});

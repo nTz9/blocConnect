@@ -12,6 +12,7 @@ import { WaterMeterListComponent } from './components/water-meter/water-meter-li
 import { AnnouncementComponent } from './components/announcement/announcement/announcement.component';
 import { ViewUsersComponent } from './components/admin-panel/view-users/view-users/view-users.component';
 import { ViewBlocksComponent } from './components/admin-panel/view-blocks/view-blocks/view-blocks.component';
+import { ViewRequestsComponent } from './components/admin-panel/view-apartaments/view-requests/view-requests/view-requests.component';
 
 
 const routes: Routes = [
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: "view-blocks",
     component: ViewBlocksComponent
+  },
+  {
+    path: "view-requests",
+    component: ViewRequestsComponent
   }
 
 ];

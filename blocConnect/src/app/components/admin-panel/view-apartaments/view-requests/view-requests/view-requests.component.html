@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Apartment Requests</h2>
+    <table class="requests-table">
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Owner ID</th>
+          <th>Apartment ID</th>
+          <th>Block ID</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of requests">
+          <td>{{ request.id }}</td>
+          <td>{{ request.cnp }}</td>
+          <td>{{ request.apartamentId }}</td>
+          <td>{{ request.blockID }}</td>
+          <td>{{ request.status }}</td>
+          <td>
+            <button (click)="acceptRequest(request.id, request.apartamentId, request.cnp)" [disabled]="request.status !== 'pending'">Accept</button>
+            <button (click)="rejectRequest(request.id, request.apartamentId, request.cnp)" [disabled]="request.status !== 'pending'">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
