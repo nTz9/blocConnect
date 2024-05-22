@@ -13,6 +13,7 @@ import { AnnouncementComponent } from './components/announcement/announcement/an
 import { ViewUsersComponent } from './components/admin-panel/view-users/view-users/view-users.component';
 import { ViewBlocksComponent } from './components/admin-panel/view-blocks/view-blocks/view-blocks.component';
 import { ViewRequestsComponent } from './components/admin-panel/view-apartaments/view-requests/view-requests/view-requests.component';
+import { ViewApartamentsComponent } from './components/admin-panel/view-apartaments/view-apartaments/view-apartaments/view-apartaments.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: "view-requests",
     component: ViewRequestsComponent
+  },
+  {
+    path: "view-apartaments",
+    component: ViewApartamentsComponent
   }
 
 ];

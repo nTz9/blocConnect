@@ -92,16 +92,76 @@
     display: block;
   }
 
-  .reject-button {
+  .delete-button {
     color: red; /* culoarea textului pentru butonul Delete */
   }
 
   .color-b {
-    color: #02b493;
+    color: black;
   }
   
   .action-item .fa {
     margin-left: 8px; /* spațierea între text și icon */
+  }
+
+  /* Form Add */
+  
+  .modal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  form {
+    display: grid;
+    gap: 10px;
+  }
+  
+  form label {
+    font-weight: bold;
+  }
+  
+  form input[type="text"] {
+    width: 100%;
+  }
+  
+  form button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: #0056b3;
   }
 
   /* Search Container */
@@ -117,52 +177,3 @@
     font-size: 16px;
     border: 1px solid #ccc;
   }
-
-  /* Filter By Category */
-
-/* Stiluri pentru selectul de categorii */
-.filter-container {
-  width: 80%;
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
-  margin: auto;
-  margin-bottom: 50px;
-  padding: 10px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.filter-container select {
-  padding: 8px 16px;
-  margin-right: 10px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
-  outline: none;
-}
-
-/* Stiluri pentru butonul de filtrare, dacă este necesar */
-.filter-container button {
-  padding: 8px 20px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 10px;
-}
-
-.filter-container button:hover {
-  background-color: #0056b3;
-}
-/* Category Label */
-.filter-container label {
-  margin-right: 10px; /* Adaugă un spațiu între label și select */
-  font-size: 18px; /* Asigură-te că textul este de dimensiune adecvată */
-  color: #333; /* O culoare ușor de citit */
-  font-weight: bold; /* Face textul mai lizibil și evident */
-}

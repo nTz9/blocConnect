@@ -29,6 +29,7 @@ import { AnnouncementComponent } from './components/announcement/announcement/an
 import { ViewUsersComponent } from './components/admin-panel/view-users/view-users/view-users.component';
 import { ViewBlocksComponent } from './components/admin-panel/view-blocks/view-blocks/view-blocks.component';
 import { ViewRequestsComponent } from './components/admin-panel/view-apartaments/view-requests/view-requests/view-requests.component';
+import { ViewApartamentsComponent } from './components/admin-panel/view-apartaments/view-apartaments/view-apartaments/view-apartaments.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ViewRequestsComponent } from './components/admin-panel/view-apartaments
     AnnouncementComponent,
     ViewUsersComponent,
     ViewBlocksComponent,
-    ViewRequestsComponent
+    ViewRequestsComponent,
+    ViewApartamentsComponent
   ],
   imports: [
     BrowserModule,

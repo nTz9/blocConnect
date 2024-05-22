@@ -10,11 +10,6 @@ export class ApartamentService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  ngOnInit(): void {
-  }
-
-  apartaments: any[] = [];
-
   getAvailableApartamentsByCNP(cnp: string): Observable<any[]>{
     return this.firestore.collection("apartaments", ref => ref.where('owners', 'array-contains', cnp)).snapshotChanges()
     .pipe(
@@ -74,6 +69,23 @@ export class ApartamentService {
 
   getAvailableApartaments(): Observable<any[]> {
     return this.firestore.collection('apartaments').valueChanges({ idField: 'id'});
+  }
+
+  getApartaments(): Observable<any[]> {
+    return this.firestore.collection('apartaments').snapshotChanges();
+  }
+
+  addApartament(apartamentData: any): Promise<any> {
+    // Adaugă un nou document în colecția 'blocks' cu datele furnizate și ID-ul generat automat
+    return this.firestore.collection('apartaments').add(apartamentData);
+  }
+
+  updateApartament(apartamentId: string, updatedApartament: any): Promise<void> {
+    return this.firestore.collection('apartaments').doc(apartamentId).update(updatedApartament);
+  }
+
+  deleteApartament(apartamentID: string) {
+    return this.firestore.collection('apartaments').doc(apartamentID).delete();
   }
 
 }

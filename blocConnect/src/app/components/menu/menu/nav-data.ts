@@ -66,14 +66,14 @@ export const adminNavbarData: INavbarData[]  = [
     {
         routeLink :'/view-requests',
         icon: 'fa fa-tint',
-        label: 'View Requests',
+        label: 'View Properties',
         items: [
             {
                 routeLink : '/view-requests',
                 label: 'View Requests',
             },
             {
-                routeLink : '',
+                routeLink : '/view-apartaments',
                 label: 'View Apartments',
             }
         ]

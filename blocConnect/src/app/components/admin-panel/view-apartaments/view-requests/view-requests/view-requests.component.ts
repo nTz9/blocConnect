@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApartamentService } from 'src/app/services/apartament.service';
+import { BlockService } from 'src/app/services/block.service';
 import { RequestsService } from 'src/app/services/requests.service';
 
 @Component({
@@ -8,9 +10,20 @@ import { RequestsService } from 'src/app/services/requests.service';
 })
 export class ViewRequestsComponent implements OnInit{
 
-  constructor(private requestsService: RequestsService) {}
+  constructor(
+    private requestsService: RequestsService,
+    private blockService: BlockService,
+    private apartamentService: ApartamentService
+  ) {}
 
   requests: any[] = [];
+  filteredRequests: any[] = [];
+
+  showActionsMenu: boolean = false;
+
+  status: string[] = ["accepted", "rejected"];
+  selectedStatus = '';
+  searchText: string = '';
 
   ngOnInit(): void {
     this.loadRequests();
@@ -19,11 +32,23 @@ export class ViewRequestsComponent implements OnInit{
   loadRequests(): void {
     this.requestsService.getRequests().subscribe(requests => {
       this.requests = requests.map(request => {
-        return {
+        const requestData = {
           id: request.payload.doc.id,
           ...request.payload.doc.data()
-        }
+        };
+
+        // Obțineți informațiile despre apartament și bloc
+        this.apartamentService.getApartamentInfo(requestData.apartamentId).subscribe(apartament => {
+          requestData.apartamentInfo = apartament;
+        });
+
+        this.blockService.getBlockInfo(requestData.blockID).subscribe(block => {
+          requestData.blockInfo = block;
+        });
+
+        return requestData;
       });
+      this.filteredRequests = this.requests;
     });
   }
 
@@ -56,5 +81,36 @@ export class ViewRequestsComponent implements OnInit{
     }
   } 
 
+  toggleActionsMenu(event: MouseEvent): void {
+    event.stopPropagation(); // Oprire propagare eveniment pentru a preveni închiderea meniului în timpul deschiderii
+    this.showActionsMenu = !this.showActionsMenu; // Invertim starea meniului de acțiuni
+  }
+
+  filterRequests(): void {
+    const searchText = this.searchText.toLowerCase().trim();
+  
+    // Verificați dacă există text de căutare
+    if (searchText) {
+      // Filtrarea utilizatorilor în funcție de CNP sau Email
+      this.filteredRequests = this.requests.filter(request => {
+        return request.cnp.toLowerCase().includes(searchText);
+      });
+    } else {
+      // Dacă nu există text de căutare, afișați toți utilizatorii
+      this.loadRequests();
+    }
+  }
+
+  filterByStatus(): void {
+    if (!this.selectedStatus) {
+      // Dacă nu este selectat niciun status, afișăm toate cererile
+      this.filteredRequests = this.requests;
+    } else {
+      // Filtrăm cererile după status
+      this.filteredRequests = this.requests.filter(request => request.status === this.selectedStatus);
+    }
+  }
+  
+  
 
 }

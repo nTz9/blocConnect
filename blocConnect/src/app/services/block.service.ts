@@ -35,5 +35,9 @@ export class BlockService {
     return this.firestore.collection('block').doc(blockID).delete();
   }
 
+  getDataBlocks(): Observable<any[]> {
+    return this.firestore.collection('block').valueChanges({ idField: 'id' });
+  }
+  
 }
   
