@@ -26,7 +26,12 @@ export class ViewApartamentsComponent implements OnInit{
   blocks: any[] = [];
   newOwner: string = '';
 
+  searchText: string = '';
+
   showActionsMenu: boolean = false;
+
+  showAddApartamentModal: boolean = false;
+  newApartament: any = {};
 
   loadApartaments(): void {
     this.apartamentService.getApartaments().subscribe(apartaments => {
@@ -93,7 +98,7 @@ export class ViewApartamentsComponent implements OnInit{
   }
   
 
-  deleteBlock(apartamentId: string): void {
+  deleteApartament(apartamentId: string): void {
     if (confirm("Are you sure you want to delete this apartament?")) {
       this.apartamentService.deleteApartament(apartamentId)
         .then(() => {
@@ -104,6 +109,58 @@ export class ViewApartamentsComponent implements OnInit{
         .catch(error => {
           console.error('Error deleting apartament: ', error);
         });
+    }
+  }
+
+  addApartament(): void {
+    // Adaugă noul bloc utilizând serviciul BlockService
+    if (!Array.isArray(this.newApartament.owners)) {
+      this.newApartament.owners = [];
+    }
+    this.apartamentService.addApartament(this.newApartament)
+      .then(() => {
+        console.log('Apartament added successfully!');
+        this.loadApartaments(); // Reîncarcă datele blocurilor după adăugarea unui nou bloc
+        this.toggleAddApartamentModal(); // Închide modalul după adăugare
+      })
+      .catch(error => {
+        console.error('Error adding apartament: ', error);
+      });
+  }
+
+  toggleAddApartamentModal(): void {
+    this.showAddApartamentModal = !this.showAddApartamentModal;
+    this.newApartament = {
+      name: '',
+      apartamentNumber: '',
+      Scara: '',
+      blockID: '',
+      owners: []
+    };
+  }
+
+  addNewOwner(): void {
+    if (this.newOwner.trim() !== '') {
+      this.newApartament.owners.push(this.newOwner.trim());
+      this.newOwner = ''; // Resetează câmpul pentru noul proprietar
+    }
+  }
+
+  removeNewOwner(index: number): void {
+    this.newApartament.owners.splice(index, 1);
+  }
+
+  filterApartaments(): void {
+    const searchText = this.searchText.toLowerCase().trim();
+  
+    if (searchText) {
+        this.filteredApartaments = this.apartaments.filter(apartament => {
+          const blockName = apartament.blockInfo?.name?.toLowerCase() || '';
+          return blockName.includes(this.searchText.toLowerCase());
+        });
+      } else {
+      // Dacă nu există text de căutare, afișați toți utilizatorii
+      this.loadApartaments();
     }
   }
 
