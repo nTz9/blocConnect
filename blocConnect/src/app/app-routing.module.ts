@@ -15,6 +15,7 @@ import { ViewBlocksComponent } from './components/admin-panel/view-blocks/view-b
 import { ViewRequestsComponent } from './components/admin-panel/view-apartaments/view-requests/view-requests/view-requests.component';
 import { ViewApartamentsComponent } from './components/admin-panel/view-apartaments/view-apartaments/view-apartaments/view-apartaments.component';
 import { ManageAnnouncementsComponent } from './components/admin-panel/manage-announcements/manage-announcements/manage-announcements.component';
+import { ViewAnnouncementsComponent } from './components/admin-panel/manage-announcements/view-announcements/view-announcements/view-announcements.component';
 
 
 const routes: Routes = [
@@ -69,6 +70,10 @@ const routes: Routes = [
   {
     path: "manage-announcements",
     component: ManageAnnouncementsComponent
+  },
+  {
+    path: "view-announcements",
+    component: ViewAnnouncementsComponent
   }
 
 ];

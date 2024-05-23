@@ -1,0 +1,70 @@
+<div class="container">
+    <h2>View Announcements</h2>
+    <div *ngFor="let block of blocks" class="block-container">
+      <div class="block-header" (click)="toggleBlock(block.id)">
+        <h3>{{ block.name }}</h3>
+        <p>{{ block.judetul }}, {{ block.oras }}, {{ block.strada }}, {{ block.adresa }}</p>
+      </div>
+      <div *ngIf="expandedBlocks.has(block.id)" class="block-announcements">
+        <table class="announcement-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Message</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let announcement of getAnnouncementsForBlock(block.id)">
+                <td>
+                  {{ announcement.title }}
+                </td>
+                <td>{{ announcement.category }}</td>
+                <td>{{ announcement.message }}</td>
+                <td>{{ announcement.startDate | date: 'longDate' }}</td>
+                <td>{{ announcement.endDate | date: 'longDate' }}</td>
+                <td>
+                    <div class="actions-menu">
+                      <button class="actions-menu-icon" (click)="toggleActionsMenu($event)"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                      <div class="actions-dropdown">
+                        <button class="action-item color-b" (click)="openUpdateModal(announcement)">Edit <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <button class="action-item delete-button" (click)="deleteAnnouncement(announcement.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+</div>
+
+
+<!-- Modal for editing announcement -->
+<div *ngIf="selectedAnnouncement" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="selectedAnnouncement = null">&times;</span>
+      <h2>Actualizare announcement</h2>
+      <form (submit)="saveAnnouncement()">
+        <label for="title">Title:</label>
+        <input type="text" id="title" [(ngModel)]="selectedAnnouncement.title" name="title">
+        
+        <label for="category">Category:</label>
+        <input type="text" id="category" [(ngModel)]="selectedAnnouncement.category" name="category">
+        
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" [(ngModel)]="selectedAnnouncement.startDate" name="startDate">
+        
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" [(ngModel)]="selectedAnnouncement.endDate" name="endDate">
+        
+        <label for="message">Message:</label>
+        <textarea type="text" id="message" [(ngModel)]="selectedAnnouncement.message" name="message"placeholder="Type your announcement here"></textarea>
+  
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>

@@ -97,6 +97,10 @@ export const adminNavbarData: INavbarData[]  = [
             {
                 routeLink : '/manage-announcements',
                 label: 'Manage Announcements',
+            },
+            {
+                routeLink : '/view-announcements',
+                label: 'View Announcements',
             }
         ]
     },

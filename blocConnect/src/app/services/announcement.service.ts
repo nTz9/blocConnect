@@ -64,9 +64,21 @@ export class AnnouncementService {
           this.updateAnnouncementVisibility(announcement.id, false).catch(error => {
             console.error('Error updating visibility: ', error);
           });
-        }
+        } else if (new Date(announcement.endDate) >= now && !announcement.visible) {
+          this.updateAnnouncementVisibility(announcement.id, true).catch(error => {
+            console.error('Error updating visibility: ', error);
+          });
+        } 
       });
     });
+  }
+
+  updateAnnouncement(announcementID: string, updatedAnnouncement: any): Promise<void> {
+    return this.firestore.collection('announcement').doc(announcementID).update(updatedAnnouncement);
+  }
+
+  deleteAnnouncement(announcementID: string) {
+    return this.firestore.collection('announcement').doc(announcementID).delete();
   }
 
 }
