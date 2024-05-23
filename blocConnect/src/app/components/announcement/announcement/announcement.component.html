@@ -30,7 +30,9 @@
       <tr *ngFor="let announcement of filteredAnnouncements">
         <td>
           {{ announcement.title }}
-          <span class="visible-indicator">Visible</span>
+          <span [ngClass]="announcement.visible ? 'visible-indicator' : 'invisible-indicator'">
+            {{ announcement.visible ? 'Visible' : 'Invisible' }}
+          </span>
         </td>
         <td>{{ announcement.category }}</td>
         <td>{{ announcement.message }}</td>

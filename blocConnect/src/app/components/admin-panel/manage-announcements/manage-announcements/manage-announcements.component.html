@@ -1,0 +1,63 @@
+<div class="container-s">
+  <div class="search-container">
+    <h2>Manage Announcements</h2>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search block by city..." (input)="filterAnnouncements()">
+  </div>
+</div>
+<div class="container">
+    <table class="announcement-table">
+      <thead>
+        <tr>
+          <th>Block</th>
+          <th>Judet</th>
+          <th>City</th>
+          <th>Street</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let block of blocks">
+          <td>{{ block.name }}</td>
+          <td>{{ block.Judetul }}</td>
+          <td>{{ block.Oras }}</td>
+          <td>{{ block.Strada }}</td>
+          <td>{{ block.adresa }}</td>
+          <td>
+            <div class="actions-menu">
+              <button class="actions-menu-icon" (click)="toggleActionsMenu($event)"><i class="fa fa-bars" aria-hidden="true"></i></button>
+              <div class="actions-dropdown">
+                <button class="action-item color-b" (click)="selectBlock(block)">Add <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                <!-- <button class="action-item delete-button" (click)="deleteApartament(apartament.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button> -->
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="selectedBlock" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="selectedBlock = null">&times;</span>
+      <h3>Send Announcement to {{ selectedBlock.name }}</h3>
+      <form (submit)="sendAnnouncement()">
+        <label for="title">Title:</label>
+        <input id="title" [(ngModel)]="announcement.title" name="title" type="text" placeholder="Title" required>
+        
+        <label for="category">Category:</label>
+        <input id="category" [(ngModel)]="announcement.category" name="category" type="text" placeholder="Category">
+        
+        <label for="startDate">Start Date:</label>
+        <input id="startDate" [(ngModel)]="announcement.startDate" name="startDate" type="date" required>
+        
+        <label for="endDate">End Date:</label>
+        <input id="endDate" [(ngModel)]="announcement.endDate" name="endDate" type="date" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" [(ngModel)]="announcement.message" name="message" placeholder="Type your announcement here" required></textarea>
+        
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>

@@ -86,9 +86,19 @@ export const adminNavbarData: INavbarData[]  = [
         
     },
     {
-        routeLink : '/announcement',
+        routeLink :'/manage-announcements',
         icon: 'fa fa-bullhorn',
-        label: 'Announcement',
-    }
+        label: 'Manage Announcements',
+        items: [
+            {
+                routeLink : '/announcement',
+                label: 'Announcements',
+            },
+            {
+                routeLink : '/manage-announcements',
+                label: 'Manage Announcements',
+            }
+        ]
+    },
         
 ];

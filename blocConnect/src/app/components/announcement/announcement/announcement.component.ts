@@ -14,7 +14,7 @@ interface Announcement {
   message: string;
   startDate: Date;
   endDate: Date;
-  //isVisible: boolean;
+  visible: boolean;
 }
 
 

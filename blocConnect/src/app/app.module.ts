@@ -30,6 +30,7 @@ import { ViewUsersComponent } from './components/admin-panel/view-users/view-use
 import { ViewBlocksComponent } from './components/admin-panel/view-blocks/view-blocks/view-blocks.component';
 import { ViewRequestsComponent } from './components/admin-panel/view-apartaments/view-requests/view-requests/view-requests.component';
 import { ViewApartamentsComponent } from './components/admin-panel/view-apartaments/view-apartaments/view-apartaments/view-apartaments.component';
+import { ManageAnnouncementsComponent } from './components/admin-panel/manage-announcements/manage-announcements/manage-announcements.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ViewApartamentsComponent } from './components/admin-panel/view-apartame
     ViewUsersComponent,
     ViewBlocksComponent,
     ViewRequestsComponent,
-    ViewApartamentsComponent
+    ViewApartamentsComponent,
+    ManageAnnouncementsComponent
   ],
   imports: [
     BrowserModule,

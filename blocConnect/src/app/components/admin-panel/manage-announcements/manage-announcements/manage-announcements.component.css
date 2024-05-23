@@ -1,0 +1,172 @@
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    height: 80%; 
+  }
+
+  .container-s {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  }
+
+  .header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  .announcement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .announcement-table th,
+  .announcement-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .announcement-table th {
+    background-color: #555;
+    color: white;
+  }
+  .announcement-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+/* Form Add */
+  
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  form {
+    display: grid;
+    gap: 10px;
+  }
+  
+  form label {
+    font-weight: bold;
+  }
+  
+  form input[type="text"] {
+    width: 100%;
+  }
+  
+  form button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  /* Menu Actions */
+  .actions-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .actions-menu-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .actions-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 120px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .actions-dropdown button {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  
+  .actions-dropdown button:hover {
+    background-color: #f9f9f9;
+  }
+
+  .actions-menu-icon.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  .actions-menu:hover .actions-dropdown {
+    display: block;
+  }
+
+  .delete-button {
+    color: red; /* culoarea textului pentru butonul Delete */
+  }
+
+  .color-b {
+    color: black;
+  }
+  
+  .action-item .fa {
+    margin-left: 8px; /* spațierea între text și icon */
+  }
+
+  /* Search Container */
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+    
+  .search-container input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }

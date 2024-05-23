@@ -37,4 +37,36 @@ export class AnnouncementService {
     );
   }
 
+  getAnnouncements(): Observable<any[]> {
+    return this.firestore.collection('announcement').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
+  }
+
+  sendAnnouncement(announcement: any): Promise<any> {
+    // Adaugă un nou document în colecția 'blocks' cu datele furnizate și ID-ul generat automat
+    return this.firestore.collection('announcement').add(announcement);
+  }
+
+  updateAnnouncementVisibility(id: string, visible: boolean): Promise<void> {
+    return this.firestore.collection('announcement').doc(id).update({ visible });
+  }
+
+  checkAndUpdateVisibility(): void {
+    const now = new Date();
+    this.getAnnouncements().subscribe(announcements => {
+      announcements.forEach(announcement => {
+        if (new Date(announcement.endDate) < now && announcement.visible) {
+          this.updateAnnouncementVisibility(announcement.id, false).catch(error => {
+            console.error('Error updating visibility: ', error);
+          });
+        }
+      });
+    });
+  }
+
 }
