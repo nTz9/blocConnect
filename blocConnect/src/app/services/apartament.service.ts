@@ -88,6 +88,18 @@ export class ApartamentService {
     return this.firestore.collection('apartaments').doc(apartamentID).delete();
   }
 
+  getApartamentByBlockID(blockID: string){
+    return this.firestore.collection("apartaments", ref => ref.where('blockID', '==', blockID)).snapshotChanges()
+    .pipe(
+      map(actions => actions.map(a => ({
+        payload: a.payload,
+        id: a.payload.doc.id,
+        ...a.payload.doc.data() as any
+      }))
+    )
+    );
+  }
+
 }
 interface ApartamentData {
   id: string;

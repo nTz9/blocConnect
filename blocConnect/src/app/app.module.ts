@@ -32,6 +32,7 @@ import { ViewRequestsComponent } from './components/admin-panel/view-apartaments
 import { ViewApartamentsComponent } from './components/admin-panel/view-apartaments/view-apartaments/view-apartaments/view-apartaments.component';
 import { ManageAnnouncementsComponent } from './components/admin-panel/manage-announcements/manage-announcements/manage-announcements.component';
 import { ViewAnnouncementsComponent } from './components/admin-panel/manage-announcements/view-announcements/view-announcements/view-announcements.component';
+import { ManageMaintenanceComponent } from './components/admin-panel/manage-maintenance/manage-maintenance/manage-maintenance.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ViewAnnouncementsComponent } from './components/admin-panel/manage-anno
     ViewRequestsComponent,
     ViewApartamentsComponent,
     ManageAnnouncementsComponent,
-    ViewAnnouncementsComponent
+    ViewAnnouncementsComponent,
+    ManageMaintenanceComponent
   ],
   imports: [
     BrowserModule,

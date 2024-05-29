@@ -22,4 +22,8 @@ export class MaintenanceService {
       //toArray() // Grupați toate anunțurile într-un singur array
     );
   }
+
+  addBill(billData: any): Promise<any> {
+    return this.firestore.collection('monthlyBills').add(billData);
+  }
 }

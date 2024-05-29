@@ -1,0 +1,78 @@
+<div class="container">
+  <h2>Manage Maintenance</h2>
+  <div *ngFor="let block of blocks">
+    <div class="block-container">
+      <div class="block-header" (click)="toggleBlock(block.id)">
+        <h3>Block Name: {{ block.name }}</h3>
+        <p>Adresa: {{ block.adresa }}</p>
+      </div>
+      <div *ngIf="expandedBlocks.has(block.id)" class="apartment-list">
+          <table class="apartament-table">
+            <thead>
+              <tr>
+                <th>Apartament Name</th>
+                <th>Scara</th>
+                <th>Apartament Number</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let apartament of apartaments[block.id]">
+                <td>{{ apartament.name }}</td>
+                <td>{{ apartament.Scara }}</td>
+                <td>{{ apartament.apartamentNumber }}</td>
+                <td>
+                  <div class="actions-menu">
+                    <button class="actions-menu-icon" (click)="toggleActionsMenu($event)"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                    <div class="actions-dropdown">
+                      <button (click)="openAddBillModal(apartament)" class="action-item color-b">Add Bill <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Modal for adding bill -->
+<div *ngIf="selectedApartament" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="selectedApartament = null">&times;</span>
+    <h2>Add Bill for Apartament {{ selectedApartament.apartamentNumber }}</h2>
+    <form (ngSubmit)="addBill()">
+      <label for="cleaningFee">Cleaning Fee:</label>
+      <input type="text" id="cleaningFee" [(ngModel)]="billData.cleaning_fee" name="cleaningFee">
+
+      <label for="judet">Judet:</label>
+      <input type="text" id="judet" [(ngModel)]="billData.judet" name="judet">
+
+      <label for="month">Month:</label>
+      <select id="month" [(ngModel)]="billData.month" name="month">
+        <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+      </select>
+
+      <label for="newMeterIndex">New Meter Index:</label>
+      <input type="text" id="newMeterIndex" [(ngModel)]="billData.new_meter_index" name="newMeterIndex">
+
+      <label for="oldMeterIndex">Old Meter Index:</label>
+      <input type="text" id="oldMeterIndex" [(ngModel)]="billData.old_meter_index" name="oldMeterIndex">
+
+      <label for="otherExpenses">Other Expenses:</label>
+      <input type="text" id="otherExpenses" [(ngModel)]="billData.other_expenses" name="otherExpenses">
+
+      <label for="totalWaterPrice">Total Water Price:</label>
+      <input type="text" id="totalWaterPrice" [(ngModel)]="billData.total_water_price" name="totalWaterPrice">
+
+      <label for="waterConsumption">Water Consumption:</label>
+      <input type="text" id="waterConsumption" [(ngModel)]="billData.water_consumption" name="waterConsumption">
+
+      <label for="year">Year:</label>
+      <input type="text" id="year" [(ngModel)]="billData.year" name="year">
+
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>

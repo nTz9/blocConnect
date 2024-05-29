@@ -79,11 +79,19 @@ export const adminNavbarData: INavbarData[]  = [
         ]
     },
     {
-
-        routeLink : '/maintenance',
+        routeLink :'/manage-maintenance',
         icon: 'fa fa-pencil',
-        label: 'Maintenance',
-        
+        label: 'Manage Maintenance',
+        items: [
+            {
+                routeLink : '/maintenance',
+                label: 'Maintenance',
+            },
+            {
+                routeLink : '/manage-maintenance',
+                label: 'Manage Maintenance',
+            },
+        ]
     },
     {
         routeLink :'/manage-announcements',
